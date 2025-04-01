@@ -58,3 +58,26 @@ pnpm build
 ## 라이센스
 
 MIT
+
+## URL 네이밍 규칙
+
+웹사이트의 모든 URL은 다음 규칙을 따릅니다:
+
+1. 모든 URL은 소문자로 작성합니다.
+2. 단어 사이는 하이픈(-)으로 구분합니다 (kebab-case).
+3. 의미 있는 이름을 사용합니다.
+4. URL은 간결하고 설명적이어야 합니다.
+
+### URL 구조
+
+- `/`: 메인 페이지
+- `/menu`: 메뉴 소개 페이지
+- `/drinks`: 음료 메뉴 페이지
+- `/desserts`: 디저트 메뉴 페이지
+- `/reservation`: 예약 관련 페이지
+- `/reservation-guide`: 예약 가이드 페이지
+- `/design-guide`: 디자인 가이드 페이지
+- `/catering-service`: 케이터링 서비스 페이지
+- `/about`: 회사 소개 페이지
+- `/contact`: 연락처 페이지
+- `/social`: 소셜 미디어 링크 페이지

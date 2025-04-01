@@ -1,5 +1,4 @@
 import { Instagram, MessageCircle, Phone } from "lucide-react"
-import Image from "next/image"
 import Link from "next/link"
 
 export default function Footer() {
@@ -29,14 +28,6 @@ export default function Footer() {
             루오타 | 대표: 김수영 | 개인정보책임관리자: 김수영 | 사업자등록번호: 331-35-01036 | 문의: 010-7118-0228 |
             이메일: ruota_espresso@naver.com | © Copyright 2022 All rights reserved.
           </p>
-        </div>
-        <div className="mt-4 text-right">
-          <div className="inline-flex items-center gap-2 rounded-full bg-white px-3 py-1.5">
-            <span className="text-xs text-stone-700">루오타 에스프레소</span>
-            <div className="flex h-6 w-6 items-center justify-center rounded-full bg-stone-200">
-              <Image src="/placeholder.svg?height=24&width=24" alt="Logo" width={16} height={16} />
-            </div>
-          </div>
         </div>
       </div>
     </footer>

@@ -1,14 +1,27 @@
 import "styles/tailwind.css"
-import { Metadata } from "next"
-import Footer from "./_components/Footer"
-import Header from "./_components/Header"
-import { Toaster } from "./_components/toaster"
+import { Metadata, Viewport } from "next"
+import localFont from "next/font/local"
+import { env } from "@/env.mjs"
+import Footer from "./_components/common/Footer"
+import Header from "./_components/common/Header"
+import { Toaster } from "./_components/common/toaster"
+
+const pretendard = localFont({
+  src: "../static/fonts/PretendardVariable.woff2",
+  display: "swap",
+  weight: "45 920",
+  variable: "--font-pretendard",
+})
+
+export const viewport: Viewport = {
+  themeColor: "#ffffff",
+}
 
 export const metadata: Metadata = {
+  metadataBase: new URL(env.NODE_ENV === "development" ? "http://localhost:3000" : "http://ruota.coffee"),
   title: "ruota",
   description: "루오타 커피차 커피바 케이터링 서비스",
   applicationName: "ruota",
-  themeColor: "#ada59b",
   openGraph: {
     title: "ruota",
     description: "루오타 커피차 커피바 케이터링 서비스",
@@ -30,8 +43,8 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="ko">
-      <body>
+    <html lang="ko" className={`${pretendard.variable}`}>
+      <body className={pretendard.className}>
         <Header />
         {children}
         <Footer />
