@@ -1,0 +1,8 @@
+ignoredBuiltDependencies:
+  - '@swc/core'
+  - core-js
+  - core-js-pure
+  - esbuild
+  - postinstall-postinstall
+  - protobufjs
+  - sharp

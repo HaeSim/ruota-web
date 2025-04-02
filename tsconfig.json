@@ -19,7 +19,7 @@
     "incremental": true,
     "baseUrl": ".",
     "paths": {
-      "@/*": ["./*"]
+      "@/*": ["./src/*"]
     },
     "types": ["node", "jest", "@testing-library/jest-dom"],
     "plugins": [
