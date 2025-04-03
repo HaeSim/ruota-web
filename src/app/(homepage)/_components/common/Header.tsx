@@ -16,7 +16,7 @@ export default function Header() {
 
   const menuItems = [
     { title: "메뉴", href: "/menu" },
-    { title: "예약 방법", href: "/guide" },
+    { title: "예약 방법", href: "/guide/design" },
     { title: "케이터링 후기", href: "/catering-service" },
     { title: "고객 서비스", href: "/reservation" },
   ]
