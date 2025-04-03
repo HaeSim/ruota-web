@@ -1,6 +1,7 @@
 "use client"
 import { zodResolver } from "@hookform/resolvers/zod"
-import { useSearchParams } from "next/navigation"
+import { Loader2 } from "lucide-react"
+import { useRouter, useSearchParams } from "next/navigation"
 import { signIn } from "next-auth/react"
 import { useTransition } from "react"
 import { useForm } from "react-hook-form"
@@ -9,6 +10,7 @@ import * as z from "zod"
 import { Button } from "@/components/ui/button"
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
+import { cn } from "@/lib/utils"
 import GmailSignInButton from "./gmail-auth-button"
 import NaverSignInButton from "./naver-auth-button"
 
@@ -20,6 +22,7 @@ type UserFormValue = z.infer<typeof formSchema>
 
 export default function UserAuthForm() {
   const searchParams = useSearchParams()
+  const router = useRouter()
   const callbackUrl = searchParams.get("callbackUrl")
   const [loading, startTransition] = useTransition()
   const defaultValues = {
@@ -34,9 +37,20 @@ export default function UserAuthForm() {
     startTransition(() => {
       signIn("credentials", {
         email: data.email,
-        callbackUrl: callbackUrl ?? "/dashboard",
+        callbackUrl: callbackUrl ?? "/admin/dashboard",
+        redirect: false,
+      }).then((response) => {
+        if (response?.ok) {
+          toast.success("성공적으로 로그인되었습니다!")
+          if (callbackUrl) {
+            router.push(callbackUrl)
+          } else {
+            router.push("/admin/dashboard")
+          }
+        } else {
+          toast.error("로그인에 실패했습니다.")
+        }
       })
-      toast.success("성공적으로 로그인되었습니다!")
     })
   }
 
@@ -64,8 +78,23 @@ export default function UserAuthForm() {
             )}
           />
 
-          <Button disabled={loading} className="mt-2 ml-auto w-full bg-stone-800 hover:bg-stone-700" type="submit">
-            이메일로 계속하기
+          <Button
+            disabled={loading}
+            className={cn(
+              "mt-2 ml-auto w-full bg-stone-800 hover:bg-stone-700",
+              "cursor-pointer",
+              loading && "cursor-not-allowed opacity-70"
+            )}
+            type="submit"
+          >
+            {loading ? (
+              <>
+                <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                처리 중...
+              </>
+            ) : (
+              "이메일로 계속하기"
+            )}
           </Button>
         </form>
       </Form>
@@ -78,8 +107,8 @@ export default function UserAuthForm() {
         </div>
       </div>
       <div className="space-y-2">
-        <GmailSignInButton />
-        <NaverSignInButton />
+        <GmailSignInButton disabled={loading} />
+        <NaverSignInButton disabled={loading} />
       </div>
     </>
   )

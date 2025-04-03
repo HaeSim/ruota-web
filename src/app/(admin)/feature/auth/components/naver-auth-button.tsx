@@ -3,15 +3,25 @@
 import { useSearchParams } from "next/navigation"
 import { signIn } from "next-auth/react"
 import { Button } from "@/components/ui/button"
+import { cn } from "@/lib/utils"
 
-export default function NaverSignInButton() {
+interface NaverSignInButtonProps {
+  disabled?: boolean
+}
+
+export default function NaverSignInButton({ disabled }: NaverSignInButtonProps) {
   const searchParams = useSearchParams()
   const callbackUrl = searchParams.get("callbackUrl")
 
   return (
     <Button
-      className="w-full bg-[#03C75A] text-white hover:bg-[#02b351]"
+      className={cn(
+        "w-full bg-[#03C75A] text-white hover:bg-[#02b351]",
+        "cursor-pointer",
+        disabled && "cursor-not-allowed opacity-70"
+      )}
       type="button"
+      disabled={disabled}
       onClick={() => signIn("naver", { callbackUrl: callbackUrl ?? "/dashboard" })}
     >
       <svg

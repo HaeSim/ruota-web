@@ -3,39 +3,39 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 
 const salesData = [
   {
-    name: "Olivia Martin",
-    email: "olivia.martin@email.com",
+    name: "김민지",
+    email: "minji.kim@email.com",
     avatar: "https://api.slingacademy.com/public/sample-users/1.png",
-    fallback: "OM",
-    amount: "+$1,999.00",
+    fallback: "김민",
+    amount: "+₩45,000",
   },
   {
-    name: "Jackson Lee",
-    email: "jackson.lee@email.com",
+    name: "이준호",
+    email: "junho.lee@email.com",
     avatar: "https://api.slingacademy.com/public/sample-users/2.png",
-    fallback: "JL",
-    amount: "+$39.00",
+    fallback: "이준",
+    amount: "+₩15,000",
   },
   {
-    name: "Isabella Nguyen",
-    email: "isabella.nguyen@email.com",
+    name: "박서연",
+    email: "seoyeon.park@email.com",
     avatar: "https://api.slingacademy.com/public/sample-users/3.png",
-    fallback: "IN",
-    amount: "+$299.00",
+    fallback: "박서",
+    amount: "+₩32,000",
   },
   {
-    name: "William Kim",
-    email: "will@email.com",
+    name: "정우진",
+    email: "woojin@email.com",
     avatar: "https://api.slingacademy.com/public/sample-users/4.png",
-    fallback: "WK",
-    amount: "+$99.00",
+    fallback: "정우",
+    amount: "+₩8,500",
   },
   {
-    name: "Sofia Davis",
-    email: "sofia.davis@email.com",
+    name: "최지현",
+    email: "jihyun.choi@email.com",
     avatar: "https://api.slingacademy.com/public/sample-users/5.png",
-    fallback: "SD",
-    amount: "+$39.00",
+    fallback: "최지",
+    amount: "+₩12,000",
   },
 ]
 
@@ -43,8 +43,8 @@ export function RecentSales() {
   return (
     <Card className="h-full">
       <CardHeader>
-        <CardTitle>Recent Sales</CardTitle>
-        <CardDescription>You made 265 sales this month.</CardDescription>
+        <CardTitle>최근 판매 내역</CardTitle>
+        <CardDescription>이번 달 총 265건의 판매가 있었습니다.</CardDescription>
       </CardHeader>
       <CardContent>
         <div className="space-y-8">

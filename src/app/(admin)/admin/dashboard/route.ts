@@ -1,11 +1,16 @@
+import { NextResponse } from "next/server"
 import { auth } from "@/lib/auth"
 
 export async function GET() {
   const session = await auth()
 
-  if (session?.user) {
-    return Response.redirect(new URL("/", process.env.NEXT_PUBLIC_APP_URL))
+  console.log(session)
+
+  if (!session?.user) {
+    return NextResponse.redirect(new URL("/", process.env.NEXTAUTH_URL || "http://localhost:3000"))
   } else {
-    return Response.redirect(new URL("/admin/dashboard/overview", process.env.NEXT_PUBLIC_APP_URL))
+    return NextResponse.redirect(
+      new URL("/admin/dashboard/overview", process.env.NEXTAUTH_URL || "http://localhost:3000")
+    )
   }
 }

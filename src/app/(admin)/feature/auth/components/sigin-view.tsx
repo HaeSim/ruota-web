@@ -14,7 +14,12 @@ export default function SignInViewPage() {
         로그인
       </Link>
       <div className="bg-muted relative hidden h-full flex-col p-10 text-white lg:flex dark:border-r">
-        <div className="absolute inset-0 bg-stone-900" />
+        <div className="absolute inset-0 overflow-hidden">
+          <video className="h-full w-full object-cover" autoPlay loop muted playsInline>
+            <source src="/videos/coffee_machine_preview.webm" type="video/webm" />
+          </video>
+          <div className="absolute inset-0 bg-stone-900/70" />
+        </div>
         <div className="relative z-20 flex items-center text-lg font-medium">
           <Image src="/images/_common/logo_light.webp" alt="RUOTA" width={96} height={30} className="mr-2" />
         </div>

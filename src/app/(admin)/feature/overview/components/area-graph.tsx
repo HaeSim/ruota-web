@@ -7,24 +7,24 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { ChartConfig, ChartContainer, ChartTooltip, ChartTooltipContent } from "@/components/ui/chart"
 
 const chartData = [
-  { month: "January", desktop: 186, mobile: 80 },
-  { month: "February", desktop: 305, mobile: 200 },
-  { month: "March", desktop: 237, mobile: 120 },
-  { month: "April", desktop: 73, mobile: 190 },
-  { month: "May", desktop: 209, mobile: 130 },
-  { month: "June", desktop: 214, mobile: 140 },
+  { month: "1월", 평일행사: 1860000, 주말행사: 800000 },
+  { month: "2월", 평일행사: 3050000, 주말행사: 2000000 },
+  { month: "3월", 평일행사: 2370000, 주말행사: 1200000 },
+  { month: "4월", 평일행사: 730000, 주말행사: 1900000 },
+  { month: "5월", 평일행사: 2090000, 주말행사: 1300000 },
+  { month: "6월", 평일행사: 2140000, 주말행사: 1400000 },
 ]
 
 const chartConfig = {
-  visitors: {
-    label: "Visitors",
+  매출: {
+    label: "매출액",
   },
-  desktop: {
-    label: "Desktop",
+  평일행사: {
+    label: "평일 행사",
     color: "var(--primary)",
   },
-  mobile: {
-    label: "Mobile",
+  주말행사: {
+    label: "주말 행사",
     color: "var(--primary)",
   },
 } satisfies ChartConfig
@@ -33,8 +33,8 @@ export function AreaGraph() {
   return (
     <Card className="@container/card">
       <CardHeader>
-        <CardTitle>Area Chart - Stacked</CardTitle>
-        <CardDescription>Showing total visitors for the last 6 months</CardDescription>
+        <CardTitle>요일별 매출 현황</CardTitle>
+        <CardDescription>최근 6개월 평일/주말 행사 매출 현황</CardDescription>
       </CardHeader>
       <CardContent className="px-2 pt-4 sm:px-6 sm:pt-6">
         <ChartContainer config={chartConfig} className="aspect-auto h-[250px] w-full">
@@ -62,11 +62,17 @@ export function AreaGraph() {
               axisLine={false}
               tickMargin={8}
               minTickGap={32}
-              tickFormatter={(value) => value.slice(0, 3)}
+              tickFormatter={(value) => value}
             />
             <ChartTooltip cursor={false} content={<ChartTooltipContent indicator="dot" />} />
-            <Area dataKey="mobile" type="natural" fill="url(#fillMobile)" stroke="var(--color-mobile)" stackId="a" />
-            <Area dataKey="desktop" type="natural" fill="url(#fillDesktop)" stroke="var(--color-desktop)" stackId="a" />
+            <Area dataKey="주말행사" type="natural" fill="url(#fillMobile)" stroke="var(--color-mobile)" stackId="a" />
+            <Area
+              dataKey="평일행사"
+              type="natural"
+              fill="url(#fillDesktop)"
+              stroke="var(--color-desktop)"
+              stackId="a"
+            />
           </AreaChart>
         </ChartContainer>
       </CardContent>
@@ -74,9 +80,9 @@ export function AreaGraph() {
         <div className="flex w-full items-start gap-2 text-sm">
           <div className="grid gap-2">
             <div className="flex items-center gap-2 leading-none font-medium">
-              Trending up by 5.2% this month <IconTrendingUp className="h-4 w-4" />
+              이번 달 5.2% 상승세 <IconTrendingUp className="h-4 w-4" />
             </div>
-            <div className="text-muted-foreground flex items-center gap-2 leading-none">January - June 2024</div>
+            <div className="text-muted-foreground flex items-center gap-2 leading-none">2024년 1월 - 6월</div>
           </div>
         </div>
       </CardFooter>

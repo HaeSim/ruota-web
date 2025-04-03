@@ -3,16 +3,26 @@
 import { useSearchParams } from "next/navigation"
 import { signIn } from "next-auth/react"
 import { Button } from "@/components/ui/button"
+import { cn } from "@/lib/utils"
 
-export default function GmailSignInButton() {
+interface GmailSignInButtonProps {
+  disabled?: boolean
+}
+
+export default function GmailSignInButton({ disabled }: GmailSignInButtonProps) {
   const searchParams = useSearchParams()
   const callbackUrl = searchParams.get("callbackUrl")
 
   return (
     <Button
-      className="w-full border-stone-300 text-stone-700 hover:bg-red-50"
+      className={cn(
+        "w-full border-stone-300 text-stone-700 hover:bg-red-50",
+        "cursor-pointer",
+        disabled && "cursor-not-allowed opacity-70"
+      )}
       variant="outline"
       type="button"
+      disabled={disabled}
       onClick={() => signIn("google", { callbackUrl: callbackUrl ?? "/dashboard" })}
     >
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" className="mr-2 h-4 w-4" fill="none">

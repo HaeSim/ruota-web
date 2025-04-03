@@ -6,127 +6,127 @@ import { Bar, BarChart, CartesianGrid, XAxis } from "recharts"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { ChartConfig, ChartContainer, ChartTooltip, ChartTooltipContent } from "@/components/ui/chart"
 
-export const description = "An interactive bar chart"
+export const description = "행사 유형별 판매량 차트"
 
 const chartData = [
-  { date: "2024-04-01", desktop: 222, mobile: 150 },
-  { date: "2024-04-02", desktop: 97, mobile: 180 },
-  { date: "2024-04-03", desktop: 167, mobile: 120 },
-  { date: "2024-04-04", desktop: 242, mobile: 260 },
-  { date: "2024-04-05", desktop: 373, mobile: 290 },
-  { date: "2024-04-06", desktop: 301, mobile: 340 },
-  { date: "2024-04-07", desktop: 245, mobile: 180 },
-  { date: "2024-04-08", desktop: 409, mobile: 320 },
-  { date: "2024-04-09", desktop: 59, mobile: 110 },
-  { date: "2024-04-10", desktop: 261, mobile: 190 },
-  { date: "2024-04-11", desktop: 327, mobile: 350 },
-  { date: "2024-04-12", desktop: 292, mobile: 210 },
-  { date: "2024-04-13", desktop: 342, mobile: 380 },
-  { date: "2024-04-14", desktop: 137, mobile: 220 },
-  { date: "2024-04-15", desktop: 120, mobile: 170 },
-  { date: "2024-04-16", desktop: 138, mobile: 190 },
-  { date: "2024-04-17", desktop: 446, mobile: 360 },
-  { date: "2024-04-18", desktop: 364, mobile: 410 },
-  { date: "2024-04-19", desktop: 243, mobile: 180 },
-  { date: "2024-04-20", desktop: 89, mobile: 150 },
-  { date: "2024-04-21", desktop: 137, mobile: 200 },
-  { date: "2024-04-22", desktop: 224, mobile: 170 },
-  { date: "2024-04-23", desktop: 138, mobile: 230 },
-  { date: "2024-04-24", desktop: 387, mobile: 290 },
-  { date: "2024-04-25", desktop: 215, mobile: 250 },
-  { date: "2024-04-26", desktop: 75, mobile: 130 },
-  { date: "2024-04-27", desktop: 383, mobile: 420 },
-  { date: "2024-04-28", desktop: 122, mobile: 180 },
-  { date: "2024-04-29", desktop: 315, mobile: 240 },
-  { date: "2024-04-30", desktop: 454, mobile: 380 },
-  { date: "2024-05-01", desktop: 165, mobile: 220 },
-  { date: "2024-05-02", desktop: 293, mobile: 310 },
-  { date: "2024-05-03", desktop: 247, mobile: 190 },
-  { date: "2024-05-04", desktop: 385, mobile: 420 },
-  { date: "2024-05-05", desktop: 481, mobile: 390 },
-  { date: "2024-05-06", desktop: 498, mobile: 520 },
-  { date: "2024-05-07", desktop: 388, mobile: 300 },
-  { date: "2024-05-08", desktop: 149, mobile: 210 },
-  { date: "2024-05-09", desktop: 227, mobile: 180 },
-  { date: "2024-05-10", desktop: 293, mobile: 330 },
-  { date: "2024-05-11", desktop: 335, mobile: 270 },
-  { date: "2024-05-12", desktop: 197, mobile: 240 },
-  { date: "2024-05-13", desktop: 197, mobile: 160 },
-  { date: "2024-05-14", desktop: 448, mobile: 490 },
-  { date: "2024-05-15", desktop: 473, mobile: 380 },
-  { date: "2024-05-16", desktop: 338, mobile: 400 },
-  { date: "2024-05-17", desktop: 499, mobile: 420 },
-  { date: "2024-05-18", desktop: 315, mobile: 350 },
-  { date: "2024-05-19", desktop: 235, mobile: 180 },
-  { date: "2024-05-20", desktop: 177, mobile: 230 },
-  { date: "2024-05-21", desktop: 82, mobile: 140 },
-  { date: "2024-05-22", desktop: 81, mobile: 120 },
-  { date: "2024-05-23", desktop: 252, mobile: 290 },
-  { date: "2024-05-24", desktop: 294, mobile: 220 },
-  { date: "2024-05-25", desktop: 201, mobile: 250 },
-  { date: "2024-05-26", desktop: 213, mobile: 170 },
-  { date: "2024-05-27", desktop: 420, mobile: 460 },
-  { date: "2024-05-28", desktop: 233, mobile: 190 },
-  { date: "2024-05-29", desktop: 78, mobile: 130 },
-  { date: "2024-05-30", desktop: 340, mobile: 280 },
-  { date: "2024-05-31", desktop: 178, mobile: 230 },
-  { date: "2024-06-01", desktop: 178, mobile: 200 },
-  { date: "2024-06-02", desktop: 470, mobile: 410 },
-  { date: "2024-06-03", desktop: 103, mobile: 160 },
-  { date: "2024-06-04", desktop: 439, mobile: 380 },
-  { date: "2024-06-05", desktop: 88, mobile: 140 },
-  { date: "2024-06-06", desktop: 294, mobile: 250 },
-  { date: "2024-06-07", desktop: 323, mobile: 370 },
-  { date: "2024-06-08", desktop: 385, mobile: 320 },
-  { date: "2024-06-09", desktop: 438, mobile: 480 },
-  { date: "2024-06-10", desktop: 155, mobile: 200 },
-  { date: "2024-06-11", desktop: 92, mobile: 150 },
-  { date: "2024-06-12", desktop: 492, mobile: 420 },
-  { date: "2024-06-13", desktop: 81, mobile: 130 },
-  { date: "2024-06-14", desktop: 426, mobile: 380 },
-  { date: "2024-06-15", desktop: 307, mobile: 350 },
-  { date: "2024-06-16", desktop: 371, mobile: 310 },
-  { date: "2024-06-17", desktop: 475, mobile: 520 },
-  { date: "2024-06-18", desktop: 107, mobile: 170 },
-  { date: "2024-06-19", desktop: 341, mobile: 290 },
-  { date: "2024-06-20", desktop: 408, mobile: 450 },
-  { date: "2024-06-21", desktop: 169, mobile: 210 },
-  { date: "2024-06-22", desktop: 317, mobile: 270 },
-  { date: "2024-06-23", desktop: 480, mobile: 530 },
-  { date: "2024-06-24", desktop: 132, mobile: 180 },
-  { date: "2024-06-25", desktop: 141, mobile: 190 },
-  { date: "2024-06-26", desktop: 434, mobile: 380 },
-  { date: "2024-06-27", desktop: 448, mobile: 490 },
-  { date: "2024-06-28", desktop: 149, mobile: 200 },
-  { date: "2024-06-29", desktop: 103, mobile: 160 },
-  { date: "2024-06-30", desktop: 446, mobile: 400 },
+  { date: "2024-04-01", 기업행사: 222, 페스티벌마켓: 150 },
+  { date: "2024-04-02", 기업행사: 97, 페스티벌마켓: 180 },
+  { date: "2024-04-03", 기업행사: 167, 페스티벌마켓: 120 },
+  { date: "2024-04-04", 기업행사: 242, 페스티벌마켓: 260 },
+  { date: "2024-04-05", 기업행사: 373, 페스티벌마켓: 290 },
+  { date: "2024-04-06", 기업행사: 301, 페스티벌마켓: 340 },
+  { date: "2024-04-07", 기업행사: 245, 페스티벌마켓: 180 },
+  { date: "2024-04-08", 기업행사: 409, 페스티벌마켓: 320 },
+  { date: "2024-04-09", 기업행사: 59, 페스티벌마켓: 110 },
+  { date: "2024-04-10", 기업행사: 261, 페스티벌마켓: 190 },
+  { date: "2024-04-11", 기업행사: 327, 페스티벌마켓: 350 },
+  { date: "2024-04-12", 기업행사: 292, 페스티벌마켓: 210 },
+  { date: "2024-04-13", 기업행사: 342, 페스티벌마켓: 380 },
+  { date: "2024-04-14", 기업행사: 137, 페스티벌마켓: 220 },
+  { date: "2024-04-15", 기업행사: 120, 페스티벌마켓: 170 },
+  { date: "2024-04-16", 기업행사: 138, 페스티벌마켓: 190 },
+  { date: "2024-04-17", 기업행사: 446, 페스티벌마켓: 360 },
+  { date: "2024-04-18", 기업행사: 364, 페스티벌마켓: 410 },
+  { date: "2024-04-19", 기업행사: 243, 페스티벌마켓: 180 },
+  { date: "2024-04-20", 기업행사: 89, 페스티벌마켓: 150 },
+  { date: "2024-04-21", 기업행사: 137, 페스티벌마켓: 200 },
+  { date: "2024-04-22", 기업행사: 224, 페스티벌마켓: 170 },
+  { date: "2024-04-23", 기업행사: 138, 페스티벌마켓: 230 },
+  { date: "2024-04-24", 기업행사: 387, 페스티벌마켓: 290 },
+  { date: "2024-04-25", 기업행사: 215, 페스티벌마켓: 250 },
+  { date: "2024-04-26", 기업행사: 75, 페스티벌마켓: 130 },
+  { date: "2024-04-27", 기업행사: 383, 페스티벌마켓: 420 },
+  { date: "2024-04-28", 기업행사: 122, 페스티벌마켓: 180 },
+  { date: "2024-04-29", 기업행사: 315, 페스티벌마켓: 240 },
+  { date: "2024-04-30", 기업행사: 454, 페스티벌마켓: 380 },
+  { date: "2024-05-01", 기업행사: 165, 페스티벌마켓: 220 },
+  { date: "2024-05-02", 기업행사: 293, 페스티벌마켓: 310 },
+  { date: "2024-05-03", 기업행사: 247, 페스티벌마켓: 190 },
+  { date: "2024-05-04", 기업행사: 385, 페스티벌마켓: 420 },
+  { date: "2024-05-05", 기업행사: 481, 페스티벌마켓: 390 },
+  { date: "2024-05-06", 기업행사: 498, 페스티벌마켓: 520 },
+  { date: "2024-05-07", 기업행사: 388, 페스티벌마켓: 300 },
+  { date: "2024-05-08", 기업행사: 149, 페스티벌마켓: 210 },
+  { date: "2024-05-09", 기업행사: 227, 페스티벌마켓: 180 },
+  { date: "2024-05-10", 기업행사: 293, 페스티벌마켓: 330 },
+  { date: "2024-05-11", 기업행사: 335, 페스티벌마켓: 270 },
+  { date: "2024-05-12", 기업행사: 197, 페스티벌마켓: 240 },
+  { date: "2024-05-13", 기업행사: 197, 페스티벌마켓: 160 },
+  { date: "2024-05-14", 기업행사: 448, 페스티벌마켓: 490 },
+  { date: "2024-05-15", 기업행사: 473, 페스티벌마켓: 380 },
+  { date: "2024-05-16", 기업행사: 338, 페스티벌마켓: 400 },
+  { date: "2024-05-17", 기업행사: 499, 페스티벌마켓: 420 },
+  { date: "2024-05-18", 기업행사: 315, 페스티벌마켓: 350 },
+  { date: "2024-05-19", 기업행사: 235, 페스티벌마켓: 180 },
+  { date: "2024-05-20", 기업행사: 177, 페스티벌마켓: 230 },
+  { date: "2024-05-21", 기업행사: 82, 페스티벌마켓: 140 },
+  { date: "2024-05-22", 기업행사: 81, 페스티벌마켓: 120 },
+  { date: "2024-05-23", 기업행사: 252, 페스티벌마켓: 290 },
+  { date: "2024-05-24", 기업행사: 294, 페스티벌마켓: 220 },
+  { date: "2024-05-25", 기업행사: 201, 페스티벌마켓: 250 },
+  { date: "2024-05-26", 기업행사: 213, 페스티벌마켓: 170 },
+  { date: "2024-05-27", 기업행사: 420, 페스티벌마켓: 460 },
+  { date: "2024-05-28", 기업행사: 233, 페스티벌마켓: 190 },
+  { date: "2024-05-29", 기업행사: 78, 페스티벌마켓: 130 },
+  { date: "2024-05-30", 기업행사: 340, 페스티벌마켓: 280 },
+  { date: "2024-05-31", 기업행사: 178, 페스티벌마켓: 230 },
+  { date: "2024-06-01", 기업행사: 178, 페스티벌마켓: 200 },
+  { date: "2024-06-02", 기업행사: 470, 페스티벌마켓: 410 },
+  { date: "2024-06-03", 기업행사: 103, 페스티벌마켓: 160 },
+  { date: "2024-06-04", 기업행사: 439, 페스티벌마켓: 380 },
+  { date: "2024-06-05", 기업행사: 88, 페스티벌마켓: 140 },
+  { date: "2024-06-06", 기업행사: 294, 페스티벌마켓: 250 },
+  { date: "2024-06-07", 기업행사: 323, 페스티벌마켓: 370 },
+  { date: "2024-06-08", 기업행사: 385, 페스티벌마켓: 320 },
+  { date: "2024-06-09", 기업행사: 438, 페스티벌마켓: 480 },
+  { date: "2024-06-10", 기업행사: 155, 페스티벌마켓: 200 },
+  { date: "2024-06-11", 기업행사: 92, 페스티벌마켓: 150 },
+  { date: "2024-06-12", 기업행사: 492, 페스티벌마켓: 420 },
+  { date: "2024-06-13", 기업행사: 81, 페스티벌마켓: 130 },
+  { date: "2024-06-14", 기업행사: 426, 페스티벌마켓: 380 },
+  { date: "2024-06-15", 기업행사: 307, 페스티벌마켓: 350 },
+  { date: "2024-06-16", 기업행사: 371, 페스티벌마켓: 310 },
+  { date: "2024-06-17", 기업행사: 475, 페스티벌마켓: 520 },
+  { date: "2024-06-18", 기업행사: 107, 페스티벌마켓: 170 },
+  { date: "2024-06-19", 기업행사: 341, 페스티벌마켓: 290 },
+  { date: "2024-06-20", 기업행사: 408, 페스티벌마켓: 450 },
+  { date: "2024-06-21", 기업행사: 169, 페스티벌마켓: 210 },
+  { date: "2024-06-22", 기업행사: 317, 페스티벌마켓: 270 },
+  { date: "2024-06-23", 기업행사: 480, 페스티벌마켓: 530 },
+  { date: "2024-06-24", 기업행사: 132, 페스티벌마켓: 180 },
+  { date: "2024-06-25", 기업행사: 141, 페스티벌마켓: 190 },
+  { date: "2024-06-26", 기업행사: 434, 페스티벌마켓: 380 },
+  { date: "2024-06-27", 기업행사: 448, 페스티벌마켓: 490 },
+  { date: "2024-06-28", 기업행사: 149, 페스티벌마켓: 200 },
+  { date: "2024-06-29", 기업행사: 103, 페스티벌마켓: 160 },
+  { date: "2024-06-30", 기업행사: 446, 페스티벌마켓: 400 },
 ]
 
 const chartConfig = {
   views: {
-    label: "Page Views",
+    label: "판매량",
   },
-  desktop: {
-    label: "Desktop",
+  기업행사: {
+    label: "기업행사",
     color: "var(--primary)",
   },
-  mobile: {
-    label: "Mobile",
+  페스티벌마켓: {
+    label: "페스티벌/마켓",
     color: "var(--primary)",
   },
   error: {
-    label: "Error",
+    label: "오류",
     color: "var(--primary)",
   },
 } satisfies ChartConfig
 
 export function BarGraph() {
-  const [activeChart, setActiveChart] = React.useState<keyof typeof chartConfig>("desktop")
+  const [activeChart, setActiveChart] = React.useState<keyof typeof chartConfig>("기업행사")
 
   const total = React.useMemo(
     () => ({
-      desktop: chartData.reduce((acc, curr) => acc + curr.desktop, 0),
-      mobile: chartData.reduce((acc, curr) => acc + curr.mobile, 0),
+      기업행사: chartData.reduce((acc, curr) => acc + curr.기업행사, 0),
+      페스티벌마켓: chartData.reduce((acc, curr) => acc + curr.페스티벌마켓, 0),
     }),
     []
   )
@@ -151,14 +151,14 @@ export function BarGraph() {
     <Card className="@container/card !pt-3">
       <CardHeader className="flex flex-col items-stretch space-y-0 border-b !p-0 sm:flex-row">
         <div className="flex flex-1 flex-col justify-center gap-1 px-6 !py-0">
-          <CardTitle>Bar Chart - Interactive</CardTitle>
+          <CardTitle>행사 유형별 통계</CardTitle>
           <CardDescription>
-            <span className="hidden @[540px]/card:block">Total for the last 3 months</span>
-            <span className="@[540px]/card:hidden">Last 3 months</span>
+            <span className="hidden @[540px]/card:block">최근 3개월 행사 유형별 판매량</span>
+            <span className="@[540px]/card:hidden">최근 3개월</span>
           </CardDescription>
         </div>
         <div className="flex">
-          {["desktop", "mobile", "error"].map((key) => {
+          {["기업행사", "페스티벌마켓", "error"].map((key) => {
             const chart = key as keyof typeof chartConfig
             if (!chart || total[key as keyof typeof total] === 0) return null
             return (
@@ -201,7 +201,7 @@ export function BarGraph() {
               minTickGap={32}
               tickFormatter={(value) => {
                 const date = new Date(value)
-                return date.toLocaleDateString("en-US", {
+                return date.toLocaleDateString("ko-KR", {
                   month: "short",
                   day: "numeric",
                 })
@@ -214,7 +214,7 @@ export function BarGraph() {
                   className="w-[150px]"
                   nameKey="views"
                   labelFormatter={(value) => {
-                    return new Date(value).toLocaleDateString("en-US", {
+                    return new Date(value).toLocaleDateString("ko-KR", {
                       month: "short",
                       day: "numeric",
                       year: "numeric",

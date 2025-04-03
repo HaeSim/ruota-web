@@ -8,59 +8,59 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { ChartConfig, ChartContainer, ChartTooltip, ChartTooltipContent } from "@/components/ui/chart"
 
 const chartData = [
-  { browser: "chrome", visitors: 275, fill: "var(--primary)" },
-  { browser: "safari", visitors: 200, fill: "var(--primary-light)" },
-  { browser: "firefox", visitors: 287, fill: "var(--primary-lighter)" },
-  { browser: "edge", visitors: 173, fill: "var(--primary-dark)" },
-  { browser: "other", visitors: 190, fill: "var(--primary-darker)" },
+  { coffee: "아메리카노", sales: 275, fill: "var(--primary)" },
+  { coffee: "라떼", sales: 200, fill: "var(--primary-light)" },
+  { coffee: "크림커피", sales: 287, fill: "var(--primary-lighter)" },
+  { coffee: "에스프레소", sales: 173, fill: "var(--primary-dark)" },
+  { coffee: "기타", sales: 190, fill: "var(--primary-darker)" },
 ]
 
 const chartConfig = {
-  visitors: {
-    label: "Visitors",
+  sales: {
+    label: "판매량",
   },
-  chrome: {
-    label: "Chrome",
+  아메리카노: {
+    label: "아메리카노",
     color: "var(--primary)",
   },
-  safari: {
-    label: "Safari",
+  라떼: {
+    label: "라떼",
     color: "var(--primary)",
   },
-  firefox: {
-    label: "Firefox",
+  크림커피: {
+    label: "크림커피",
     color: "var(--primary)",
   },
-  edge: {
-    label: "Edge",
+  에스프레소: {
+    label: "에스프레소",
     color: "var(--primary)",
   },
-  other: {
-    label: "Other",
+  기타: {
+    label: "기타",
     color: "var(--primary)",
   },
 } satisfies ChartConfig
 
 export function PieGraph() {
-  const totalVisitors = React.useMemo(() => {
-    return chartData.reduce((acc, curr) => acc + curr.visitors, 0)
+  const totalSales = React.useMemo(() => {
+    return chartData.reduce((acc, curr) => acc + curr.sales, 0)
   }, [])
 
   return (
     <Card className="@container/card">
       <CardHeader>
-        <CardTitle>Pie Chart - Donut with Text</CardTitle>
+        <CardTitle>케이터링 인기 음료</CardTitle>
         <CardDescription>
-          <span className="hidden @[540px]/card:block">Total visitors by browser for the last 6 months</span>
-          <span className="@[540px]/card:hidden">Browser distribution</span>
+          <span className="hidden @[540px]/card:block">최근 6개월 행사별 인기 메뉴 현황</span>
+          <span className="@[540px]/card:hidden">행사 메뉴 판매 분포</span>
         </CardDescription>
       </CardHeader>
       <CardContent className="px-2 pt-4 sm:px-6 sm:pt-6">
         <ChartContainer config={chartConfig} className="mx-auto aspect-square h-[250px]">
           <PieChart>
             <defs>
-              {["chrome", "safari", "firefox", "edge", "other"].map((browser, index) => (
-                <linearGradient key={browser} id={`fill${browser}`} x1="0" y1="0" x2="0" y2="1">
+              {["아메리카노", "라떼", "크림커피", "에스프레소", "기타"].map((coffee, index) => (
+                <linearGradient key={coffee} id={`fill${coffee}`} x1="0" y1="0" x2="0" y2="1">
                   <stop offset="0%" stopColor="var(--primary)" stopOpacity={1 - index * 0.15} />
                   <stop offset="100%" stopColor="var(--primary)" stopOpacity={0.8 - index * 0.15} />
                 </linearGradient>
@@ -70,10 +70,10 @@ export function PieGraph() {
             <Pie
               data={chartData.map((item) => ({
                 ...item,
-                fill: `url(#fill${item.browser})`,
+                fill: `url(#fill${item.coffee})`,
               }))}
-              dataKey="visitors"
-              nameKey="browser"
+              dataKey="sales"
+              nameKey="coffee"
               innerRadius={60}
               strokeWidth={2}
               stroke="var(--background)"
@@ -84,10 +84,10 @@ export function PieGraph() {
                     return (
                       <text x={viewBox.cx} y={viewBox.cy} textAnchor="middle" dominantBaseline="middle">
                         <tspan x={viewBox.cx} y={viewBox.cy} className="fill-foreground text-3xl font-bold">
-                          {totalVisitors.toLocaleString()}
+                          {totalSales.toLocaleString()}
                         </tspan>
                         <tspan x={viewBox.cx} y={(viewBox.cy || 0) + 24} className="fill-muted-foreground text-sm">
-                          Total Visitors
+                          총 판매량
                         </tspan>
                       </text>
                     )
@@ -100,10 +100,10 @@ export function PieGraph() {
       </CardContent>
       <CardFooter className="flex-col gap-2 text-sm">
         <div className="flex items-center gap-2 leading-none font-medium">
-          Chrome leads with {((chartData[0]?.visitors ?? 0 / totalVisitors) * 100).toFixed(1)}%{" "}
+          크림커피가 {((chartData[2]?.sales ?? 0 / totalSales) * 100).toFixed(1)}%로 행사에서 가장 인기 있음{" "}
           <IconTrendingUp className="h-4 w-4" />
         </div>
-        <div className="text-muted-foreground leading-none">Based on data from January - June 2024</div>
+        <div className="text-muted-foreground leading-none">2024년 1월 - 6월 케이터링 데이터 기준</div>
       </CardFooter>
     </Card>
   )
