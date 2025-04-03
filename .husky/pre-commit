@@ -1,0 +1,11 @@
+#!/bin/sh
+. "$(dirname "$0")/_/husky.sh"
+
+echo "🧪 커밋 전 검사 시작..."
+
+# lint-staged 실행
+pnpm lint-staged
+
+# 단위 및 통합 테스트
+echo "🧪 단위 및 통합 테스트 실행..."
+pnpm run test
