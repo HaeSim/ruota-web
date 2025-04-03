@@ -171,8 +171,8 @@
   "packageManager": "pnpm@10.7.1",
   "lint-staged": {
     "**/*.{js,jsx,ts,tsx}": [
-      "pnpm run lint:fix",
-      "pnpm run prettier:fix"
+      "prettier --write",
+      "eslint --fix"
     ]
   }
 }

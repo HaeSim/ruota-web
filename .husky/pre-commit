@@ -1,11 +1,42 @@
 #!/bin/sh
-. "$(dirname "$0")/_/husky.sh"
 
 echo "🧪 커밋 전 검사 시작..."
 
-# lint-staged 실행
+# lint-staged 실행 (lint:fix, prettier:fix)
+echo "🔍 린트 및 포맷 검사 실행..."
 pnpm lint-staged
+
+# lint 및 포맷 검사 (CI와 동일한 방식으로)
+echo "🔍 전체 린트 검사 실행..."
+pnpm run lint || { echo "❌ 린트 검사 실패"; exit 1; }
+
+echo "🔍 전체 포맷 검사 실행..."
+pnpm run prettier || { echo "❌ 포맷 검사 실패"; exit 1; }
 
 # 단위 및 통합 테스트
 echo "🧪 단위 및 통합 테스트 실행..."
-pnpm run test
+pnpm run test || { echo "❌ 테스트 실패"; exit 1; }
+
+# 스토리북 관련 작업 (선택적)
+if [[ "$SKIP_STORYBOOK" != "true" ]]; then
+  # 스토리북 빌드 시도 (선택적 - 실패해도 커밋 진행)
+  echo "📚 Storybook 빌드 시도..."
+  if pnpm run build-storybook --quiet; then
+    echo "✅ Storybook 빌드 성공"
+    
+    # 선택적으로 Storybook 테스트 실행
+    if [[ "$SKIP_STORYBOOK_TEST" != "true" ]]; then
+      echo "🧪 Storybook 테스트 실행..."
+      pnpm dlx concurrently -k -s first -n "SB,TEST" -c "magenta,blue" \
+        "pnpm dlx http-server storybook-static --port 6006 --silent" \
+        "pnpm dlx wait-on tcp:127.0.0.1:6006 && pnpm run test-storybook" || echo "⚠️ Storybook 테스트 실패 (무시하고 진행)"
+    fi
+  else
+    echo "⚠️ Storybook 빌드 실패 (무시하고 진행)"
+  fi
+else
+  echo "🔍 스토리북 검사 건너뜀 (SKIP_STORYBOOK=true)"
+fi
+
+# 모든 필수 검사가 통과되었습니다
+echo "✅ 모든 필수 검사 통과, 커밋 진행"
