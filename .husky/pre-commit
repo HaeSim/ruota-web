@@ -26,6 +26,9 @@ if [[ "$SKIP_STORYBOOK" != "true" ]]; then
     
     # 선택적으로 Storybook 테스트 실행
     if [[ "$SKIP_STORYBOOK_TEST" != "true" ]]; then
+      echo "🧪 Playwright 브라우저 설치 확인..."
+      pnpm playwright install --with-deps chromium
+      
       echo "🧪 Storybook 테스트 실행..."
       pnpm dlx concurrently -k -s first -n "SB,TEST" -c "magenta,blue" \
         "pnpm dlx http-server storybook-static --port 6006 --silent" \
