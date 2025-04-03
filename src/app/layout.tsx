@@ -28,14 +28,14 @@ export const viewport: Viewport = {
 }
 
 export const metadata: Metadata = {
-  metadataBase: new URL(env.NODE_ENV === "development" ? "http://localhost:3000" : "http://ruota.coffee"),
+  metadataBase: new URL(env.NODE_ENV === "development" ? "http://localhost:3000" : env.NEXT_PUBLIC_URL),
   title: "ruota",
   description: "루오타 커피차 커피바 케이터링 서비스",
   applicationName: "ruota",
   openGraph: {
     title: "ruota",
     description: "루오타 커피차 커피바 케이터링 서비스",
-    url: "http://ruota.coffee",
+    url: env.NEXT_PUBLIC_URL,
     type: "website",
     images: [
       {

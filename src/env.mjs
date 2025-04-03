@@ -8,8 +8,11 @@ export const env = createEnv({
       .optional()
       .transform((value) => value === "true"),
   },
-  client: {},
+  client: {
+    NEXT_PUBLIC_URL: z.string().url().default("http://localhost:3000"),
+  },
   runtimeEnv: {
     ANALYZE: process.env.ANALYZE,
+    NEXT_PUBLIC_URL: process.env.NEXT_PUBLIC_URL,
   },
 })
