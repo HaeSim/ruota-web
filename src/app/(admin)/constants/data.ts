@@ -14,7 +14,7 @@ export type Product = {
 //Info: The following data is used for the sidebar navigation and Cmd K bar.
 export const navItems: NavItem[] = [
   {
-    title: "Dashboard",
+    title: "대시보드",
     url: "/dashboard/overview",
     icon: "dashboard",
     isActive: false,
@@ -22,7 +22,7 @@ export const navItems: NavItem[] = [
     items: [], // Empty array as there are no child items for Dashboard
   },
   {
-    title: "Product",
+    title: "메뉴 관리",
     url: "/dashboard/product",
     icon: "product",
     shortcut: ["p", "p"],
@@ -30,20 +30,20 @@ export const navItems: NavItem[] = [
     items: [], // No child items
   },
   {
-    title: "Account",
+    title: "계정",
     url: "#", // Placeholder as there is no direct link for the parent
     icon: "billing",
     isActive: true,
 
     items: [
       {
-        title: "Profile",
+        title: "바리스타 프로필",
         url: "/dashboard/profile",
         icon: "userPen",
         shortcut: ["m", "m"],
       },
       {
-        title: "Login",
+        title: "로그인",
         shortcut: ["l", "l"],
         url: "/",
         icon: "login",
@@ -51,10 +51,26 @@ export const navItems: NavItem[] = [
     ],
   },
   {
-    title: "Kanban",
+    title: "예약 관리",
     url: "/dashboard/kanban",
     icon: "kanban",
     shortcut: ["k", "k"],
+    isActive: false,
+    items: [], // No child items
+  },
+  {
+    title: "이벤트 일정",
+    url: "/dashboard/events",
+    icon: "post",
+    shortcut: ["e", "e"],
+    isActive: false,
+    items: [], // No child items
+  },
+  {
+    title: "원두 재고",
+    url: "/dashboard/inventory",
+    icon: "product",
+    shortcut: ["i", "i"],
     isActive: false,
     items: [], // No child items
   },

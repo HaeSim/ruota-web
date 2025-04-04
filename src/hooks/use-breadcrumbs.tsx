@@ -10,14 +10,30 @@ type BreadcrumbItem = {
 
 // This allows to add custom title as well
 const routeMapping: Record<string, BreadcrumbItem[]> = {
-  "/dashboard": [{ title: "Dashboard", link: "/dashboard" }],
-  "/dashboard/employee": [
-    { title: "Dashboard", link: "/dashboard" },
-    { title: "Employee", link: "/dashboard/employee" },
+  "/dashboard": [{ title: "대시보드", link: "/dashboard" }],
+  "/dashboard/overview": [
+    { title: "대시보드", link: "/dashboard" },
+    { title: "개요", link: "/dashboard/overview" },
   ],
   "/dashboard/product": [
-    { title: "Dashboard", link: "/dashboard" },
-    { title: "Product", link: "/dashboard/product" },
+    { title: "대시보드", link: "/dashboard" },
+    { title: "메뉴 관리", link: "/dashboard/product" },
+  ],
+  "/dashboard/profile": [
+    { title: "대시보드", link: "/dashboard" },
+    { title: "바리스타 프로필", link: "/dashboard/profile" },
+  ],
+  "/dashboard/kanban": [
+    { title: "대시보드", link: "/dashboard" },
+    { title: "예약 관리", link: "/dashboard/kanban" },
+  ],
+  "/dashboard/events": [
+    { title: "대시보드", link: "/dashboard" },
+    { title: "이벤트 일정", link: "/dashboard/events" },
+  ],
+  "/dashboard/inventory": [
+    { title: "대시보드", link: "/dashboard" },
+    { title: "원두 재고", link: "/dashboard/inventory" },
   ],
   // Add more custom mappings as needed
 }

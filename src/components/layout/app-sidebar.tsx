@@ -4,9 +4,9 @@ import {
   IconChevronRight,
   IconChevronsDown,
   IconCircleCheck,
+  IconCoffee,
   IconCreditCard,
   IconLogout,
-  IconPhotoUp,
 } from "@tabler/icons-react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
@@ -41,43 +41,49 @@ import {
 } from "@/components/ui/sidebar"
 import { useMediaQuery } from "@/hooks/use-media-query"
 import { Icons } from "../icons"
-import { OrgSwitcher } from "../org-switcher"
 
 export const company = {
-  name: "Acme Inc",
-  logo: IconPhotoUp,
-  plan: "Enterprise",
+  name: "루오타 커피",
+  logo: IconCoffee,
+  plan: "프리미엄",
 }
-
-const tenants = [
-  { id: "1", name: "Acme Inc" },
-  { id: "2", name: "Beta Corp" },
-  { id: "3", name: "Gamma Ltd" },
-]
 
 export default function AppSidebar() {
   const { data: session } = useSession()
   const pathname = usePathname()
   const { isOpen } = useMediaQuery()
 
-  const handleSwitchTenant = (_tenantId: string) => {
-    // Tenant switching functionality would be implemented here
-  }
-
-  const activeTenant = tenants[0]!
-
   React.useEffect(() => {
-    // Side effects based on sidebar state changes
+    // 사이드바 상태 변경에 기반한 부수 효과
   }, [isOpen])
 
   return (
     <Sidebar collapsible="icon">
       <SidebarHeader>
-        <OrgSwitcher tenants={tenants} defaultTenant={activeTenant} onTenantSwitch={handleSwitchTenant} />
+        <SidebarMenu>
+          <SidebarMenuItem>
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <SidebarMenuButton
+                  size="lg"
+                  className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground"
+                >
+                  <div className="bg-primary text-sidebar-primary-foreground flex aspect-square size-8 items-center justify-center rounded-lg">
+                    <IconCoffee className="size-4" />
+                  </div>
+                  <div className="flex flex-col gap-0.5 leading-none">
+                    <span className="font-semibold">루오타</span>
+                    <span className="text-muted-foreground text-xs">커피트럭</span>
+                  </div>
+                </SidebarMenuButton>
+              </DropdownMenuTrigger>
+            </DropdownMenu>
+          </SidebarMenuItem>
+        </SidebarMenu>
       </SidebarHeader>
       <SidebarContent className="overflow-x-hidden">
         <SidebarGroup>
-          <SidebarGroupLabel>Overview</SidebarGroupLabel>
+          <SidebarGroupLabel>루오타 관리</SidebarGroupLabel>
           <SidebarMenu>
             {navItems.map((item) => {
               const Icon = item.icon ? Icons[item.icon] : Icons.logo
@@ -132,12 +138,12 @@ export default function AppSidebar() {
                   <Avatar className="h-8 w-8 rounded-lg">
                     <AvatarImage src={session?.user?.image || ""} alt={session?.user?.name || ""} />
                     <AvatarFallback className="rounded-lg">
-                      {session?.user?.name?.slice(0, 2)?.toUpperCase() || "CN"}
+                      {session?.user?.name?.slice(0, 2)?.toUpperCase() || "바리스타"}
                     </AvatarFallback>
                   </Avatar>
                   <div className="grid flex-1 text-left text-sm leading-tight">
-                    <span className="truncate font-semibold">{session?.user?.name || ""}</span>
-                    <span className="truncate text-xs">{session?.user?.email || ""}</span>
+                    <span className="truncate font-semibold">{session?.user?.name || "바리스타"}</span>
+                    <span className="truncate text-xs">{session?.user?.email || "barista@ruota.co.kr"}</span>
                   </div>
                   <IconChevronsDown className="ml-auto size-4" />
                 </SidebarMenuButton>
@@ -153,12 +159,12 @@ export default function AppSidebar() {
                     <Avatar className="h-8 w-8 rounded-lg">
                       <AvatarImage src={session?.user?.image || ""} alt={session?.user?.name || ""} />
                       <AvatarFallback className="rounded-lg">
-                        {session?.user?.name?.slice(0, 2)?.toUpperCase() || "CN"}
+                        {session?.user?.name?.slice(0, 2)?.toUpperCase() || "바리스타"}
                       </AvatarFallback>
                     </Avatar>
                     <div className="grid flex-1 text-left text-sm leading-tight">
-                      <span className="truncate font-semibold">{session?.user?.name || ""}</span>
-                      <span className="truncate text-xs"> {session?.user?.email || ""}</span>
+                      <span className="truncate font-semibold">{session?.user?.name || "바리스타"}</span>
+                      <span className="truncate text-xs"> {session?.user?.email || "barista@ruota.co.kr"}</span>
                     </div>
                   </div>
                 </DropdownMenuLabel>
@@ -167,21 +173,21 @@ export default function AppSidebar() {
                 <DropdownMenuGroup>
                   <DropdownMenuItem>
                     <IconCircleCheck className="mr-2 h-4 w-4" />
-                    Account
+                    바리스타 계정
                   </DropdownMenuItem>
                   <DropdownMenuItem>
                     <IconCreditCard className="mr-2 h-4 w-4" />
-                    Billing
+                    판매 내역
                   </DropdownMenuItem>
                   <DropdownMenuItem>
                     <IconBell className="mr-2 h-4 w-4" />
-                    Notifications
+                    알림 설정
                   </DropdownMenuItem>
                 </DropdownMenuGroup>
                 <DropdownMenuSeparator />
                 <DropdownMenuItem onClick={() => signOut()}>
                   <IconLogout className="mr-2 h-4 w-4" />
-                  Log out
+                  로그아웃
                 </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
