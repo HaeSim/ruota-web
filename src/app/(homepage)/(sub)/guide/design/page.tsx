@@ -8,7 +8,7 @@ export const metadata: Metadata = {
 
 export default function DesignGuidePage() {
   return (
-    <div className="min-h-screen bg-stone-100 py-16">
+    <div className="min-h-screen bg-stone-100">
       <div className="container mx-auto px-4">
         <h1 className="mb-2 text-center text-4xl font-bold">디자인 가이드</h1>
         <p className="mb-8 text-center text-lg text-gray-600">루오타와 함께하는 이벤트를 위한 맞춤형 디자인 옵션</p>

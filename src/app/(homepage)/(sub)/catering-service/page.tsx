@@ -48,7 +48,7 @@ export default function CateringServicePage() {
   ]
 
   return (
-    <div className="min-h-screen bg-stone-100 py-16">
+    <div className="min-h-screen bg-stone-100">
       <div className="container mx-auto px-4">
         <h1 className="mb-2 text-center text-4xl font-bold">케이터링 서비스</h1>
         <p className="mb-12 text-center text-lg text-gray-600">특별한 이벤트를 위한 루오타의 프리미엄 모바일 커피바</p>

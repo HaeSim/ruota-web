@@ -46,7 +46,7 @@ export default function DessertsPage() {
   ]
 
   return (
-    <div className="min-h-screen bg-stone-100 py-16">
+    <div className="min-h-screen bg-stone-100">
       <div className="container mx-auto px-4">
         <h1 className="mb-2 text-center text-4xl font-bold">디저트 메뉴</h1>
         <p className="mb-8 text-center text-lg text-gray-600">커피와 완벽한 페어링을 이루는 수제 디저트</p>

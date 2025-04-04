@@ -79,6 +79,12 @@ module.exports = {
       minWidth: {
         ...defaultTheme.width,
       },
+      height: {
+        gnb: "68px",
+      },
+      spacing: {
+        gnb: "68px",
+      },
     },
   },
   plugins: [],

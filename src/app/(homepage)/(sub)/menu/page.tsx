@@ -7,7 +7,7 @@ export const metadata: Metadata = {
 
 export default function MenuPage() {
   return (
-    <div className="min-h-screen bg-stone-100 py-16">
+    <div className="min-h-screen bg-stone-100">
       <div className="container mx-auto px-4">
         <h1 className="mb-8 text-center text-4xl font-bold">메뉴</h1>
         <div className="grid gap-8 md:grid-cols-2">

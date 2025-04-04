@@ -32,7 +32,7 @@ export default function Header() {
 
   return (
     <header
-      className={`fixed top-0 right-0 left-0 z-50 flex items-center justify-between px-8 py-4 transition-all duration-300 ${
+      className={`h-gnb fixed top-0 right-0 left-0 z-50 flex items-center justify-between px-8 transition-all duration-300 ${
         isTransparent ? "bg-transparent" : "bg-white shadow-md"
       }`}
     >
