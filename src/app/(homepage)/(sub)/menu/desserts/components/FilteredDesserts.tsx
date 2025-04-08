@@ -1,7 +1,7 @@
 "use client"
 
 import { useState } from "react"
-import { categories, Category, CategoryFilter } from "./CategoryFilter"
+import { Category, CategoryFilter } from "./CategoryFilter"
 import { type Dessert, DessertCard } from "./DessertCard"
 
 interface FilteredDessertsProps {

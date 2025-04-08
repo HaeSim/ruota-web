@@ -1,5 +1,4 @@
 import React from "react"
-import CtaGithub from "./cta-github"
 import { ModeToggle } from "./ThemeToggle/theme-toggle"
 import { UserNav } from "./user-nav"
 import { Breadcrumbs } from "../breadcrumbs"
