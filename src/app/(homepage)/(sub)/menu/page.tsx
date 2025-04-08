@@ -15,7 +15,7 @@ export default function MenuPage() {
             <h2 className="mb-4 text-2xl font-semibold">음료 메뉴</h2>
             <p className="mb-4 text-gray-700">루오타의 시그니처 커피와 다양한 음료를 소개합니다.</p>
             <a
-              href="/drinks"
+              href="/menu/drinks"
               className="inline-block rounded-md bg-stone-800 px-4 py-2 text-white transition hover:bg-stone-700"
             >
               자세히 보기
@@ -25,7 +25,7 @@ export default function MenuPage() {
             <h2 className="mb-4 text-2xl font-semibold">디저트</h2>
             <p className="mb-4 text-gray-700">커피와 완벽한 페어링을 이루는 수제 디저트를 만나보세요.</p>
             <a
-              href="/desserts"
+              href="/menu/desserts"
               className="inline-block rounded-md bg-stone-800 px-4 py-2 text-white transition hover:bg-stone-700"
             >
               자세히 보기

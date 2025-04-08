@@ -2,7 +2,7 @@
 
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs"
 
-export const categories = ["전체", "구움과자", "케이크", "쿠키"] as const
+export const categories = ["전체", "구움과자", "브런치", "과일"] as const
 export type Category = (typeof categories)[number]
 
 interface CategoryFilterProps {

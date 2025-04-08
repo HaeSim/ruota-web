@@ -1,9 +1,14 @@
 import { Instagram, MessageCircle, Phone } from "lucide-react"
 import Link from "next/link"
+import { cn } from "@/lib/utils"
 
-export default function Footer() {
+interface FooterProps {
+  className?: string
+}
+
+export default function Footer({ className }: FooterProps) {
   return (
-    <footer className="bg-stone-100 py-8">
+    <footer className={cn("bg-stone-100 py-8", className)}>
       <div className="mx-auto max-w-6xl px-4">
         <div className="mb-4 text-center">
           <p className="mb-2 text-xs text-stone-600 uppercase">RUOTA COFFEE & DESSERT CATERING SERVICE</p>
