@@ -84,8 +84,10 @@ export default async function RootLayout({ children }: { children: React.ReactNo
         <NextTopLoader showSpinner={false} color="#f9e9c1" />
         <NuqsAdapter>
           <Providers session={session} activeThemeValue={activeThemeValue as string}>
-            <Toaster />
-            <SmoothScroll>{children}</SmoothScroll>
+            <div vaul-drawer-wrapper="" className="bg-background">
+              <Toaster />
+              <SmoothScroll>{children}</SmoothScroll>
+            </div>
           </Providers>
         </NuqsAdapter>
       </body>

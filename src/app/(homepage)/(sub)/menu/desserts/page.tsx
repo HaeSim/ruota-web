@@ -16,7 +16,7 @@ const desserts: Dessert[] = [
     description: "달콤한 메이플 시럽과 고소한 피칸이 들어간 휘낭시에",
     price: "3,200원",
     image: "/images/menu/desserts/maple-pecan-financier.webp",
-    category: "구움과자",
+    category: "구운과자",
   },
   {
     id: 2,
@@ -24,7 +24,7 @@ const desserts: Dessert[] = [
     description: "사과 크럼블이 올라간 휘낭시에",
     price: "3,600원",
     image: "/images/menu/desserts/apple-crumble-financier.webp",
-    category: "구움과자",
+    category: "구운과자",
   },
   {
     id: 3,
@@ -32,7 +32,7 @@ const desserts: Dessert[] = [
     description: "달콤한 무화과가 들어간 르뱅쿠키",
     price: "3,700원",
     image: "/images/menu/desserts/fig-leban-cookie.webp",
-    category: "구움과자",
+    category: "구운과자",
   },
   {
     id: 4,
@@ -40,7 +40,7 @@ const desserts: Dessert[] = [
     description: "진한 초콜릿 풍미의 마들렌",
     price: "3,300원",
     image: "/images/menu/desserts/chocolate-madeleine.webp",
-    category: "구움과자",
+    category: "구운과자",
   },
   {
     id: 5,
@@ -48,7 +48,7 @@ const desserts: Dessert[] = [
     description: "향긋한 얼그레이와 부드러운 가나슈가 어우러진 마들렌",
     price: "3,500원",
     image: "/images/menu/desserts/earl-grey-ganache-madeleine.webp",
-    category: "구움과자",
+    category: "구운과자",
   },
   {
     id: 6,
@@ -56,7 +56,7 @@ const desserts: Dessert[] = [
     description: "달콤한 메이플 시럽과 고소한 피칸이 들어간 마들렌",
     price: "3,500원",
     image: "/images/menu/desserts/maple-pecan-madeleine.webp",
-    category: "구움과자",
+    category: "구운과자",
   },
   {
     id: 7,
@@ -64,7 +64,7 @@ const desserts: Dessert[] = [
     description: "클래식한 휘낭시에",
     price: "2,800원",
     image: "/images/menu/desserts/plain-financier.webp",
-    category: "구움과자",
+    category: "구운과자",
   },
   {
     id: 8,
@@ -72,7 +72,7 @@ const desserts: Dessert[] = [
     description: "무화과와 크림치즈가 어우러진 휘낭시에",
     price: "3,300원",
     image: "/images/menu/desserts/fig-cream-cheese-financier.webp",
-    category: "구움과자",
+    category: "구운과자",
   },
   {
     id: 9,
@@ -80,7 +80,7 @@ const desserts: Dessert[] = [
     description: "바삭한 츄러스 풍미의 휘낭시에",
     price: "3,000원",
     image: "/images/menu/desserts/churros-financier.webp",
-    category: "구움과자",
+    category: "구운과자",
   },
   {
     id: 10,
@@ -88,7 +88,7 @@ const desserts: Dessert[] = [
     description: "소금과 초콜릿의 조화로운 휘낭시에",
     price: "3,200원",
     image: "/images/menu/desserts/salted-chocolate-financier.webp",
-    category: "구움과자",
+    category: "구운과자",
   },
   {
     id: 11,
@@ -96,7 +96,7 @@ const desserts: Dessert[] = [
     description: "고소한 황치즈가 들어간 휘낭시에",
     price: "3,200원",
     image: "/images/menu/desserts/cheese-financier.webp",
-    category: "구움과자",
+    category: "구운과자",
   },
   {
     id: 12,
@@ -104,7 +104,7 @@ const desserts: Dessert[] = [
     description: "소금과 카라멜의 달콤한 휘낭시에",
     price: "3,200원",
     image: "/images/menu/desserts/salted-caramel-financier.webp",
-    category: "구움과자",
+    category: "구운과자",
   },
   {
     id: 13,
@@ -112,7 +112,7 @@ const desserts: Dessert[] = [
     description: "바삭한 플레인 크로플",
     price: "3,500원",
     image: "/images/menu/desserts/plain-croffle.webp",
-    category: "구움과자",
+    category: "구운과자",
   },
   {
     id: 14,
@@ -120,7 +120,7 @@ const desserts: Dessert[] = [
     description: "작고 귀여운 미니 크로플 2개 세트",
     price: "3,500원",
     image: "/images/menu/desserts/mini-croffle.webp",
-    category: "구움과자",
+    category: "구운과자",
   },
   {
     id: 15,
@@ -160,7 +160,7 @@ const desserts: Dessert[] = [
     description: "상큼한 레몬 글라쎄가 올라간 마들렌",
     price: "2,800원",
     image: "/images/menu/desserts/lemon-glazed-madeleine.webp",
-    category: "구움과자",
+    category: "구운과자",
   },
   {
     id: 20,
@@ -168,7 +168,7 @@ const desserts: Dessert[] = [
     description: "초콜릿과 호두가 들어간 르뱅쿠키",
     price: "3,500원",
     image: "/images/menu/desserts/chocolate-walnut-leban-cookie.webp",
-    category: "구움과자",
+    category: "구운과자",
   },
   {
     id: 21,
@@ -176,7 +176,7 @@ const desserts: Dessert[] = [
     description: "초콜릿의 풍미를 두 배로 즐길 수 있는 르뱅쿠키",
     price: "3,500원",
     image: "/images/menu/desserts/double-chocolate-leban-cookie.webp",
-    category: "구움과자",
+    category: "구운과자",
   },
   {
     id: 22,
@@ -184,7 +184,7 @@ const desserts: Dessert[] = [
     description: "상큼한 크랜베리와 고소한 호두가 들어간 르뱅쿠키",
     price: "3,500원",
     image: "/images/menu/desserts/cranberry-walnut-leban-cookie.webp",
-    category: "구움과자",
+    category: "구운과자",
   },
 ]
 

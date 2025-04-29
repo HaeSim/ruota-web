@@ -2,12 +2,13 @@
 
 import Autoplay from "embla-carousel-autoplay"
 import Image from "next/image"
-import { useMediaQuery } from "react-responsive"
+
 import { CardContent } from "@/components/ui/card"
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel"
+import { useMediaQuery } from "@/hooks/use-media-query"
 
 export default function HeroCarousel() {
-  const isMobile = useMediaQuery({ query: "(max-width: 768px)" })
+  const { isOpen: isDesktop } = useMediaQuery()
   const banners: { id: number; imageUrl?: string; imageUrlMobile: string; title: string }[] = [
     {
       id: 1,
@@ -30,7 +31,7 @@ export default function HeroCarousel() {
   ]
 
   const filteredBanners = banners.filter((banner) => {
-    if (isMobile) {
+    if (!isDesktop) {
       return banner.imageUrlMobile !== undefined
     }
     return banner.imageUrl !== undefined
@@ -60,7 +61,7 @@ export default function HeroCarousel() {
                 <CardContent className="flex items-center justify-center overflow-hidden p-0">
                   <div className="relative h-dvh w-full">
                     <Image
-                      src={isMobile ? banner.imageUrlMobile ?? "" : banner.imageUrl ?? ""}
+                      src={isDesktop ? banner.imageUrl ?? "" : banner.imageUrlMobile ?? ""}
                       alt={banner.title}
                       fill
                       className="object-cover"
