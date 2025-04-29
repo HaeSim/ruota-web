@@ -20,7 +20,7 @@ export default function BottomNav() {
     <nav className="fixed right-0 bottom-0 left-0 z-50 border-t bg-white md:hidden">
       <div className="flex h-16 items-center justify-around">
         {menuItems.map((item) => {
-          const isActive = pathname === item.href
+          const isActive = pathname.startsWith(item.href)
           const Icon = item.icon
 
           return (

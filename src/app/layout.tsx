@@ -10,6 +10,7 @@ import { env } from "@/env.mjs"
 import { auth } from "@/lib/auth"
 import { fontVariables } from "@/lib/font"
 import { cn } from "@/lib/utils"
+import { SmoothScroll } from "./(homepage)/_components/common/smooth-scroll"
 
 const META_THEME_COLORS = {
   light: "#ffffff",
@@ -80,11 +81,11 @@ export default async function RootLayout({ children }: { children: React.ReactNo
           pretendard.className
         )}
       >
-        <NextTopLoader showSpinner={false} />
+        <NextTopLoader showSpinner={false} color="#f9e9c1" />
         <NuqsAdapter>
           <Providers session={session} activeThemeValue={activeThemeValue as string}>
             <Toaster />
-            {children}
+            <SmoothScroll>{children}</SmoothScroll>
           </Providers>
         </NuqsAdapter>
       </body>

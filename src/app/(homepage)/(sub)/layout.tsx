@@ -1,3 +1,7 @@
 export default function SubLayout({ children }: { children: React.ReactNode }) {
-  return <div className="mt-gnb min-h-[100dvh] bg-stone-100 px-8 py-8">{children}</div>
+  return (
+    <div className="mt-gnb h-[calc(100dvh-68px)] bg-stone-100 md:h-[calc(100dvh-68px-140px)]">
+      <div className="h-full">{children}</div>
+    </div>
+  )
 }
