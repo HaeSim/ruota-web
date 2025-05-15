@@ -2,7 +2,7 @@
 import { KBarAnimator, KBarPortal, KBarPositioner, KBarProvider, KBarSearch } from "kbar"
 import { useRouter } from "next/navigation"
 import { useMemo } from "react"
-import { navItems } from "@/app/(admin)/constants/data"
+import { navItems } from "@/app/(1.admin)/constants/data"
 import RenderResults from "./render-result"
 import useThemeSwitching from "./use-theme-switching"
 

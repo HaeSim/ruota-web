@@ -10,7 +10,7 @@ import { env } from "@/env.mjs"
 import { auth } from "@/lib/auth"
 import { fontVariables } from "@/lib/font"
 import { cn } from "@/lib/utils"
-import { SmoothScroll } from "./(homepage)/_components/common/smooth-scroll"
+import { SmoothScroll } from "./(2.homepage)/_components/common/smooth-scroll"
 
 const META_THEME_COLORS = {
   light: "#ffffff",
