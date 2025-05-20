@@ -9,8 +9,8 @@ const menuItems = [
   { title: "홈", href: "/", icon: Home },
   { title: "메뉴", href: "/menu", icon: Utensils },
   { title: "예약", href: "/reservation", icon: Calendar },
-  { title: "후기", href: "/catering-service", icon: MessageSquare },
-  { title: "더보기", href: "/guide/design", icon: Menu },
+  { title: "후기", href: "/review", icon: MessageSquare },
+  { title: "더보기", href: "/etc", icon: Menu },
 ]
 
 export default function BottomNav() {

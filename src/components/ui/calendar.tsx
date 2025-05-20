@@ -1,18 +1,13 @@
 "use client"
 
-import { ChevronLeftIcon, ChevronRightIcon } from "@radix-ui/react-icons"
+import { ChevronLeft, ChevronRight } from "lucide-react"
 import * as React from "react"
-import type { ComponentProps } from "react"
 import { DayPicker } from "react-day-picker"
 
 import { buttonVariants } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
 
-// Custom icons that meet the DayPicker requirements
-const LeftIcon = () => <ChevronLeftIcon className="size-4" />
-const RightIcon = () => <ChevronRightIcon className="size-4" />
-
-function Calendar({ className, classNames, showOutsideDays = true, ...props }: ComponentProps<typeof DayPicker>) {
+function Calendar({ className, classNames, showOutsideDays = true, ...props }: React.ComponentProps<typeof DayPicker>) {
   return (
     <DayPicker
       showOutsideDays={showOutsideDays}
@@ -52,8 +47,8 @@ function Calendar({ className, classNames, showOutsideDays = true, ...props }: C
         ...classNames,
       }}
       components={{
-        IconLeft: LeftIcon,
-        IconRight: RightIcon,
+        IconLeft: ({ className, ...props }) => <ChevronLeft className={cn("size-4", className)} {...props} />,
+        IconRight: ({ className, ...props }) => <ChevronRight className={cn("size-4", className)} {...props} />,
       }}
       {...props}
     />

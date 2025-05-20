@@ -61,7 +61,7 @@ export default function HeroCarousel() {
                 <CardContent className="flex items-center justify-center overflow-hidden p-0">
                   <div className="relative h-dvh w-full">
                     <Image
-                      src={isDesktop ? banner.imageUrl ?? "" : banner.imageUrlMobile ?? ""}
+                      src={isDesktop ? (banner.imageUrl ?? "") : (banner.imageUrlMobile ?? "")}
                       alt={banner.title}
                       fill
                       className="object-cover"

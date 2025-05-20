@@ -16,9 +16,9 @@ export default function Header() {
 
   const menuItems = [
     { title: "메뉴", href: "/menu" },
-    { title: "예약 방법", href: "/guide/design" },
-    { title: "케이터링 후기", href: "/catering-service" },
-    { title: "고객 서비스", href: "/reservation" },
+    { title: "예약", href: "/reservation" },
+    { title: "후기", href: "/review" },
+    { title: "고객지원", href: "/support" },
   ]
 
   useEffect(() => {
@@ -53,7 +53,7 @@ export default function Header() {
             <li key={item.href}>
               <Link
                 href={item.href}
-                className={`text-sm transition-colors hover:text-stone-900 ${
+                className={`text-sm transition-colors hover:text-stone-600 ${
                   isTransparent ? "text-white" : "text-stone-600"
                 }`}
               >
