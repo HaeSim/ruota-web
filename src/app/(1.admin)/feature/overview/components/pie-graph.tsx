@@ -2,6 +2,7 @@
 
 import { IconTrendingUp } from "@tabler/icons-react"
 import * as React from "react"
+import { useMemo } from "react"
 import { Label, Pie, PieChart } from "recharts"
 
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
@@ -42,7 +43,7 @@ const chartConfig = {
 } satisfies ChartConfig
 
 export function PieGraph() {
-  const totalSales = React.useMemo(() => {
+  const totalSales = useMemo(() => {
     return chartData.reduce((acc, curr) => acc + curr.sales, 0)
   }, [])
 

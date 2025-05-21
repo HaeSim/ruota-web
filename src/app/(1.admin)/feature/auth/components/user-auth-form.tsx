@@ -1,8 +1,7 @@
 "use client"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { Loader2 } from "lucide-react"
-import { useRouter, useSearchParams } from "next/navigation"
-import { signIn } from "next-auth/react"
+import { useSearchParams } from "next/navigation"
 import { useTransition } from "react"
 import { useForm } from "react-hook-form"
 import { toast } from "sonner"
@@ -11,8 +10,8 @@ import { Button } from "@/components/ui/button"
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
 import { cn } from "@/lib/utils"
-import GmailSignInButton from "./gmail-auth-button"
-import NaverSignInButton from "./naver-auth-button"
+import { supabaseBrowser } from "@/utils/supabase/supabase-browser"
+import KakaoAuthButton from "./kakao-auth-button"
 
 const formSchema = z.object({
   email: z.string().email({ message: "올바른 이메일 주소를 입력해주세요" }),
@@ -22,8 +21,7 @@ type UserFormValue = z.infer<typeof formSchema>
 
 export default function UserAuthForm() {
   const searchParams = useSearchParams()
-  const router = useRouter()
-  const callbackUrl = searchParams.get("callbackUrl")
+  const callbackUrl = searchParams.get("callbackUrl") || "/admin/dashboard/overview"
   const [loading, startTransition] = useTransition()
   const defaultValues = {
     email: "admin@ruota.com",
@@ -35,22 +33,20 @@ export default function UserAuthForm() {
 
   const onSubmit = async (data: UserFormValue) => {
     startTransition(() => {
-      signIn("credentials", {
-        email: data.email,
-        callbackUrl: callbackUrl ?? "/admin/dashboard",
-        redirect: false,
-      }).then((response) => {
-        if (response?.ok) {
-          toast.success("성공적으로 로그인되었습니다!")
-          if (callbackUrl) {
-            router.push(callbackUrl)
+      supabaseBrowser.auth
+        .signInWithOtp({
+          email: data.email,
+          options: {
+            emailRedirectTo: callbackUrl,
+          },
+        })
+        .then(({ error }) => {
+          if (!error) {
+            toast.success("로그인 링크가 이메일로 전송되었습니다.")
           } else {
-            router.push("/admin/dashboard")
+            toast.error("로그인에 실패했습니다: " + error.message)
           }
-        } else {
-          toast.error("로그인에 실패했습니다.")
-        }
-      })
+        })
     })
   }
 
@@ -107,8 +103,7 @@ export default function UserAuthForm() {
         </div>
       </div>
       <div className="space-y-2">
-        <GmailSignInButton disabled={loading} />
-        <NaverSignInButton disabled={loading} />
+        <KakaoAuthButton disabled={loading} />
       </div>
     </>
   )

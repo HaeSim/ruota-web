@@ -1,6 +1,7 @@
 "use client"
 
 import * as React from "react"
+import { useEffect, useMemo, useState } from "react"
 import { Bar, BarChart, CartesianGrid, XAxis } from "recharts"
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
@@ -121,9 +122,9 @@ const chartConfig = {
 } satisfies ChartConfig
 
 export function BarGraph() {
-  const [activeChart, setActiveChart] = React.useState<keyof typeof chartConfig>("기업행사")
+  const [activeChart, setActiveChart] = useState<keyof typeof chartConfig>("기업행사")
 
-  const total = React.useMemo(
+  const total = useMemo(
     () => ({
       기업행사: chartData.reduce((acc, curr) => acc + curr.기업행사, 0),
       페스티벌마켓: chartData.reduce((acc, curr) => acc + curr.페스티벌마켓, 0),
@@ -131,13 +132,13 @@ export function BarGraph() {
     []
   )
 
-  const [isClient, setIsClient] = React.useState(false)
+  const [isClient, setIsClient] = useState(false)
 
-  React.useEffect(() => {
+  useEffect(() => {
     setIsClient(true)
   }, [])
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (activeChart === "error") {
       throw new Error("Mocking Error")
     }

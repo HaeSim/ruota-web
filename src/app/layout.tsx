@@ -7,7 +7,6 @@ import { NuqsAdapter } from "nuqs/adapters/next/app"
 import Providers from "@/components/layout/providers"
 import { Toaster } from "@/components/ui/sonner"
 import { env } from "@/env.mjs"
-import { auth } from "@/lib/auth"
 import { fontVariables } from "@/lib/font"
 import { cn } from "@/lib/utils"
 import { SmoothScroll } from "./(2.homepage)/_components/common/smooth-scroll"
@@ -53,7 +52,6 @@ export const metadata: Metadata = {
 }
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
-  const session = await auth()
   const cookieStore = await cookies()
   const activeThemeValue = cookieStore.get("active_theme")?.value
   const isScaled = activeThemeValue?.endsWith("-scaled")
@@ -83,7 +81,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
       >
         <NextTopLoader showSpinner={false} color="#f9e9c1" />
         <NuqsAdapter>
-          <Providers session={session} activeThemeValue={activeThemeValue as string}>
+          <Providers activeThemeValue={activeThemeValue as string}>
             <div vaul-drawer-wrapper="" className="bg-background">
               <Toaster />
               <SmoothScroll>{children}</SmoothScroll>
