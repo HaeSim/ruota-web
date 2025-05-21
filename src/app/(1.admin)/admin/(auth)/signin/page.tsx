@@ -1,6 +1,7 @@
 import { redirect } from "next/navigation"
-import SignInViewPage from "@/app/(1.admin)/feature/auth/components/sigin-view"
+
 import { createSupabaseServer } from "@/utils/supabase/supabase-server"
+import SignInViewPage from "./components/sigin-view"
 
 export const metadata = {
   title: "로그인 | RUOTA 관리자",

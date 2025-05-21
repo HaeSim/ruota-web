@@ -9,11 +9,12 @@ import { signInWithOAuth } from "@/utils/supabase/auth-helpers.client"
 
 interface KakaoAuthButtonProps {
   disabled?: boolean
+  callbackUrl?: string
 }
 
-export default function KakaoAuthButton({ disabled }: KakaoAuthButtonProps) {
+export default function KakaoAuthButton({ disabled, callbackUrl: propCallbackUrl }: KakaoAuthButtonProps) {
   const searchParams = useSearchParams()
-  const callbackUrl = searchParams.get("callbackUrl") || "/admin/dashboard/overview"
+  const callbackUrl = propCallbackUrl || searchParams.get("callbackUrl") || "/admin/dashboard/overview"
   const [isLoading, setIsLoading] = useState(false)
 
   const origin = typeof window !== "undefined" ? window.location.origin : ""

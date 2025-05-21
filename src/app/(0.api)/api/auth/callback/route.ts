@@ -10,13 +10,32 @@ export async function GET(request: NextRequest) {
 
     if (code) {
       const supabase = await createSupabaseServer()
-      const { error } = await supabase.auth.exchangeCodeForSession(code)
+      const { error, data } = await supabase.auth.exchangeCodeForSession(code)
 
-      if (!error) {
-        // callbackUrl이 절대경로면 그대로, 상대경로면 origin을 붙임
+      if (!error && data.session?.user) {
+        // 1. 현재 유저 id로 users 테이블에서 is_admin 조회
+        const { data: userRow } = await supabase
+          .from("users")
+          .select("is_admin")
+          .eq("id", data.session.user.id)
+          .single()
+
+        // 2. 어드민이 아니면 로그아웃 및 리디렉션
+        if (!userRow?.is_admin) {
+          // 가입 성공 안내 페이지로 이동하는 경우는 예외적으로 허용
+          if (callbackUrl.startsWith("/admin/signup/success")) {
+            const finalRedirectUrl = `${requestUrl.origin}${callbackUrl}`
+            return NextResponse.redirect(finalRedirectUrl)
+          }
+          await supabase.auth.signOut()
+          const redirectUrl = new URL("/admin", requestUrl.origin)
+          redirectUrl.searchParams.set("error", "not_admin")
+          return NextResponse.redirect(redirectUrl)
+        }
+
+        // 3. 어드민이면 기존대로 리디렉션
         const isAbsolute = /^https?:\/\//.test(callbackUrl)
         const finalRedirectUrl = isAbsolute ? callbackUrl : `${requestUrl.origin}${callbackUrl}`
-
         return NextResponse.redirect(finalRedirectUrl)
       }
     }

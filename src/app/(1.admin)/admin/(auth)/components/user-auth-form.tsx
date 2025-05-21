@@ -3,7 +3,7 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import type { AuthError } from "@supabase/supabase-js"
 import { Loader2 } from "lucide-react"
 import { useSearchParams } from "next/navigation"
-import { useTransition } from "react"
+import { useEffect, useTransition } from "react"
 import { useForm } from "react-hook-form"
 import { toast } from "sonner"
 import * as z from "zod"
@@ -23,6 +23,7 @@ type UserFormValue = z.infer<typeof formSchema>
 export default function UserAuthForm() {
   const searchParams = useSearchParams()
   const callbackUrl = searchParams.get("callbackUrl") || "/admin/dashboard/overview"
+  const error = searchParams.get("error")
   const [loading, startTransition] = useTransition()
   const defaultValues = {
     email: "admin@ruota.com",
@@ -34,6 +35,12 @@ export default function UserAuthForm() {
 
   const origin = typeof window !== "undefined" ? window.location.origin : ""
   const finalCallbackUrl = `${origin}/api/auth/callback?callbackUrl=${encodeURIComponent(callbackUrl)}`
+
+  useEffect(() => {
+    if (error === "not_admin") {
+      toast.error("어드민 계정만 로그인할 수 있습니다.")
+    }
+  }, [error])
 
   const onSubmit = async (data: UserFormValue) => {
     startTransition(() => {
