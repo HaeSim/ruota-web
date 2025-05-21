@@ -1,5 +1,6 @@
 "use client"
 import { zodResolver } from "@hookform/resolvers/zod"
+import type { AuthError } from "@supabase/supabase-js"
 import { Loader2 } from "lucide-react"
 import { useSearchParams } from "next/navigation"
 import { useTransition } from "react"
@@ -10,7 +11,7 @@ import { Button } from "@/components/ui/button"
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
 import { cn } from "@/lib/utils"
-import { supabaseBrowser } from "@/utils/supabase/supabase-browser"
+import { createSupabaseBrowser } from "@/utils/supabase/supabase-browser"
 import KakaoAuthButton from "./kakao-auth-button"
 
 const formSchema = z.object({
@@ -31,16 +32,19 @@ export default function UserAuthForm() {
     defaultValues,
   })
 
+  const origin = typeof window !== "undefined" ? window.location.origin : ""
+  const finalCallbackUrl = `${origin}/api/auth/callback?callbackUrl=${encodeURIComponent(callbackUrl)}`
+
   const onSubmit = async (data: UserFormValue) => {
     startTransition(() => {
-      supabaseBrowser.auth
-        .signInWithOtp({
+      createSupabaseBrowser()
+        .auth.signInWithOtp({
           email: data.email,
           options: {
-            emailRedirectTo: callbackUrl,
+            emailRedirectTo: finalCallbackUrl,
           },
         })
-        .then(({ error }) => {
+        .then(({ error }: { error: AuthError | null }) => {
           if (!error) {
             toast.success("로그인 링크가 이메일로 전송되었습니다.")
           } else {

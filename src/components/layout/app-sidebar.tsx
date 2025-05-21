@@ -41,7 +41,8 @@ import {
   SidebarRail,
 } from "@/components/ui/sidebar"
 import { useMediaQuery } from "@/hooks/use-media-query"
-import { supabaseBrowser } from "@/utils/supabase/supabase-browser"
+import { signOut } from "@/utils/supabase/auth-helpers.client"
+import { createSupabaseBrowser } from "@/utils/supabase/supabase-browser"
 import { Icons } from "../icons"
 
 export const company = {
@@ -56,9 +57,11 @@ export default function AppSidebar() {
   const [user, setUser] = useState<User | null>(null)
 
   useEffect(() => {
-    supabaseBrowser.auth.getUser().then(({ data }) => {
-      setUser(data.user)
-    })
+    createSupabaseBrowser()
+      .auth.getUser()
+      .then(({ data }) => {
+        setUser(data.user)
+      })
   }, [])
 
   React.useEffect(() => {
@@ -195,7 +198,7 @@ export default function AppSidebar() {
                 <DropdownMenuSeparator />
                 <DropdownMenuItem
                   onClick={async () => {
-                    await supabaseBrowser.auth.signOut()
+                    await signOut()
                     location.reload()
                   }}
                 >

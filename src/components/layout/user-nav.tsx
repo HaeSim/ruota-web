@@ -13,15 +13,18 @@ import {
   DropdownMenuShortcut,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
-import { supabaseBrowser } from "@/utils/supabase/supabase-browser"
+import { signOut } from "@/utils/supabase/auth-helpers.client"
+import { createSupabaseBrowser } from "@/utils/supabase/supabase-browser"
 
 export function UserNav() {
   const [user, setUser] = useState<User | null>(null)
 
   useEffect(() => {
-    supabaseBrowser.auth.getUser().then(({ data }) => {
-      setUser(data.user)
-    })
+    createSupabaseBrowser()
+      .auth.getUser()
+      .then(({ data }) => {
+        setUser(data.user)
+      })
   }, [])
 
   if (user) {
@@ -61,7 +64,7 @@ export function UserNav() {
           <DropdownMenuSeparator />
           <DropdownMenuItem
             onClick={async () => {
-              await supabaseBrowser.auth.signOut()
+              await signOut()
               location.reload()
             }}
           >

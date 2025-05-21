@@ -5,6 +5,7 @@ import { useSearchParams } from "next/navigation"
 import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
+import { signInWithOAuth } from "@/utils/supabase/auth-helpers.client"
 
 interface KakaoAuthButtonProps {
   disabled?: boolean
@@ -15,15 +16,15 @@ export default function KakaoAuthButton({ disabled }: KakaoAuthButtonProps) {
   const callbackUrl = searchParams.get("callbackUrl") || "/admin/dashboard/overview"
   const [isLoading, setIsLoading] = useState(false)
 
+  const origin = typeof window !== "undefined" ? window.location.origin : ""
+  const finalCallbackUrl = callbackUrl.startsWith("/") ? `${origin}${callbackUrl}` : callbackUrl
+  const redirectTo = `${origin}/api/auth/callback?callbackUrl=${encodeURIComponent(finalCallbackUrl)}`
+
   const handleKakaoLogin = async () => {
     try {
       setIsLoading(true)
-      const response = await fetch(`/api/auth/kakao?callbackUrl=${encodeURIComponent(callbackUrl)}`)
-      const { url } = (await response.json()) as { url?: string; error?: string }
-
-      if (url) {
-        window.location.href = url
-      }
+      await signInWithOAuth("kakao", redirectTo)
+      // Supabase가 자동으로 카카오 인증 페이지로 리다이렉트합니다.
     } catch (error) {
       console.error("카카오 로그인 오류:", error)
     } finally {

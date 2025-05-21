@@ -17,7 +17,7 @@ export async function updateSession(request: NextRequest) {
 
   // OAuth 코드가、있는지 확인 (카카오 등 OAuth 인증 후 리디렉션)
   if (code) {
-    console.log("OAuth code detected in middleware:", code)
+    // console.log("OAuth code detected in middleware:", code)
   }
 
   // Supabase 서버 클라이언트 생성
@@ -56,7 +56,6 @@ export async function updateSession(request: NextRequest) {
   if (code && pathname === "/") {
     const redirectUrl = request.nextUrl.clone()
     redirectUrl.pathname = "/admin/dashboard/overview"
-    console.log("OAuth code detected at root path, redirecting to dashboard")
     return NextResponse.redirect(redirectUrl)
   }
 
