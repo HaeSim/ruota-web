@@ -50,10 +50,10 @@ export function PieGraph() {
   return (
     <Card className="@container/card">
       <CardHeader>
-        <CardTitle>케이터링 인기 음료</CardTitle>
+        <CardTitle>행사에서 가장 사랑받는 메뉴는?</CardTitle>
         <CardDescription>
-          <span className="hidden @[540px]/card:block">최근 6개월 행사별 인기 메뉴 현황</span>
-          <span className="@[540px]/card:hidden">행사 메뉴 판매 분포</span>
+          <span className="hidden @[540px]/card:block">최근 6개월간 고객들이 가장 많이 찾은 음료를 확인해보세요.</span>
+          <span className="@[540px]/card:hidden">행사별 인기 메뉴를 한눈에!</span>
         </CardDescription>
       </CardHeader>
       <CardContent className="px-2 pt-4 sm:px-6 sm:pt-6">
@@ -101,8 +101,7 @@ export function PieGraph() {
       </CardContent>
       <CardFooter className="flex-col gap-2 text-sm">
         <div className="flex items-center gap-2 leading-none font-medium">
-          크림커피가 {((chartData[2]?.sales ?? 0 / totalSales) * 100).toFixed(1)}%로 행사에서 가장 인기 있음{" "}
-          <IconTrendingUp className="h-4 w-4" />
+          크림커피가 요즘 가장 인기예요! 재고를 미리 체크해두세요. <IconTrendingUp className="h-4 w-4" />
         </div>
         <div className="text-muted-foreground leading-none">2024년 1월 - 6월 케이터링 데이터 기준</div>
       </CardFooter>

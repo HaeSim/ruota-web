@@ -2,7 +2,8 @@
 import { IconSlash } from "@tabler/icons-react"
 
 import { Fragment } from "react"
-import { useMenuTree } from "@/app/(1.admin)/constants/_menu-config/useMenuTree"
+
+import { useMenuTree } from "@/app/(1.admin)/admin/(private)/_config/menu/useMenuTree"
 import {
   Breadcrumb,
   BreadcrumbItem,

@@ -1,13 +1,12 @@
 import React from "react"
-import { ModeToggle } from "./ThemeToggle/theme-toggle"
+import { Breadcrumbs } from "@/app/(1.admin)/admin/(private)/_components/layout/AdminHeader/breadcrumbs"
+import SearchInput from "@/app/(1.admin)/admin/(private)/_components/layout/AdminHeader/search-input"
+import { Separator } from "@/components/ui/separator"
+import { SidebarTrigger } from "@/components/ui/sidebar"
 import { UserNav } from "./user-nav"
-import { Breadcrumbs } from "../breadcrumbs"
-import SearchInput from "../search-input"
-import { ThemeSelector } from "../theme-selector"
-import { Separator } from "../ui/separator"
-import { SidebarTrigger } from "../ui/sidebar"
+import { ModeToggle } from "../../../../../../_components/ThemeToggle/theme-toggle"
 
-export default function Header() {
+export default function AdminHeader() {
   return (
     <header className="flex h-16 shrink-0 items-center justify-between gap-2 transition-[width,height] ease-linear group-has-data-[collapsible=icon]/sidebar-wrapper:h-12">
       <div className="flex items-center gap-2 px-4">
@@ -22,7 +21,6 @@ export default function Header() {
         </div>
         <UserNav />
         <ModeToggle />
-        <ThemeSelector />
       </div>
     </header>
   )

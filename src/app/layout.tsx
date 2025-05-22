@@ -4,12 +4,13 @@ import localFont from "next/font/local"
 import { cookies } from "next/headers"
 import NextTopLoader from "nextjs-toploader"
 import { NuqsAdapter } from "nuqs/adapters/next/app"
-import Providers from "@/components/layout/providers"
-import { Toaster } from "@/components/ui/sonner"
+
+import { Toaster } from "sonner"
 import { env } from "@/env.mjs"
 import { fontVariables } from "@/lib/font"
 import { cn } from "@/lib/utils"
 import { SmoothScroll } from "./(2.homepage)/_components/common/smooth-scroll"
+import Providers from "./_components/providers"
 
 const META_THEME_COLORS = {
   light: "#ffffff",

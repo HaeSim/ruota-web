@@ -33,8 +33,8 @@ export function AreaGraph() {
   return (
     <Card className="@container/card">
       <CardHeader>
-        <CardTitle>요일별 매출 현황</CardTitle>
-        <CardDescription>최근 6개월 평일/주말 행사 매출 현황</CardDescription>
+        <CardTitle>평일과 주말, 언제 더 바빴나요?</CardTitle>
+        <CardDescription>최근 6개월간의 매출 흐름을 살펴보세요.</CardDescription>
       </CardHeader>
       <CardContent className="px-2 pt-4 sm:px-6 sm:pt-6">
         <ChartContainer config={chartConfig} className="aspect-auto h-[250px] w-full">
@@ -80,7 +80,7 @@ export function AreaGraph() {
         <div className="flex w-full items-start gap-2 text-sm">
           <div className="grid gap-2">
             <div className="flex items-center gap-2 leading-none font-medium">
-              이번 달 5.2% 상승세 <IconTrendingUp className="h-4 w-4" />
+              이번 달 매출이 5.2% 올랐어요! 좋은 흐름을 이어가고 있어요! <IconTrendingUp className="h-4 w-4" />
             </div>
             <div className="text-muted-foreground flex items-center gap-2 leading-none">2024년 1월 - 6월</div>
           </div>

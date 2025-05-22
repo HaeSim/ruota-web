@@ -3,8 +3,7 @@ import { KBarAnimator, KBarPortal, KBarPositioner, KBarProvider, KBarSearch } fr
 import type { Action } from "kbar"
 import { useRouter } from "next/navigation"
 import { useMemo } from "react"
-import { MENU_STRUCTURE } from "@/app/(1.admin)/constants/_menu-config/menuStructure"
-import type { Menu } from "@/app/(1.admin)/constants/_menu-config/types"
+import { Menu, MENU_STRUCTURE } from "@/app/(1.admin)/admin/(private)/_config/menu"
 import RenderResults from "./render-result"
 import useThemeSwitching from "./use-theme-switching"
 

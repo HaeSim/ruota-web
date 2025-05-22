@@ -1,7 +1,8 @@
 "use client"
 import React from "react"
+import { ActiveThemeProvider } from "@/app/_components/active-theme"
 import ThemeProvider from "./ThemeToggle/theme-provider"
-import { ActiveThemeProvider } from "../active-theme"
+
 export default function Providers({
   activeThemeValue,
   children,

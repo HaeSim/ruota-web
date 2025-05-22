@@ -152,10 +152,10 @@ export function BarGraph() {
     <Card className="@container/card !pt-3">
       <CardHeader className="flex flex-col items-stretch space-y-0 border-b !p-0 sm:flex-row">
         <div className="flex flex-1 flex-col justify-center gap-1 px-6 !py-0">
-          <CardTitle>행사 유형별 통계</CardTitle>
+          <CardTitle>이번 주, 어떤 행사에서 커피가 더 사랑받았을까요?</CardTitle>
           <CardDescription>
-            <span className="hidden @[540px]/card:block">최근 3개월 행사 유형별 판매량</span>
-            <span className="@[540px]/card:hidden">최근 3개월</span>
+            <span className="hidden @[540px]/card:block">최근 3개월간 행사별 판매 흐름을 한눈에 확인해보세요.</span>
+            <span className="@[540px]/card:hidden">행사별 판매 트렌드를 살펴보세요.</span>
           </CardDescription>
         </div>
         <div className="flex">

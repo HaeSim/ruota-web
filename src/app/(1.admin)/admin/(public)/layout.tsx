@@ -1,10 +1,16 @@
 import Image from "next/image"
 import Link from "next/link"
 import type { ReactNode } from "react"
-import { ADMIN_AUTH_VIDEO_SOURCES } from "@/components/admin-auth/AdminAuthVideoResources"
-import { ModeToggle } from "@/components/layout/ThemeToggle/theme-toggle"
+
 import { buttonVariants } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
+import { ModeToggle } from "../../../_components/ThemeToggle/theme-toggle"
+
+const ADMIN_AUTH_VIDEO_SOURCES = [
+  "https://knxfawdanhibawnxaudl.supabase.co/storage/v1/object/public/public/admin/resource/admin_intro_1.webm",
+  "https://knxfawdanhibawnxaudl.supabase.co/storage/v1/object/public/public/admin/resource/admin_intro_2.webm",
+  "https://knxfawdanhibawnxaudl.supabase.co/storage/v1/object/public/public/admin/resource/admin_intro_3.webm",
+] as const
 
 export default function AuthLayout({ children }: { children: ReactNode }) {
   // 서버 컴포넌트에서 랜덤 인덱스 선택 (SSR)

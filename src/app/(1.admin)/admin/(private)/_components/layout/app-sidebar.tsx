@@ -13,7 +13,8 @@ import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { useEffect, useState } from "react"
 import * as React from "react"
-import { useMenuTree } from "@/app/(1.admin)/constants/_menu-config/useMenuTree"
+
+import { useMenuTree } from "@/app/(1.admin)/admin/(private)/_config/menu/useMenuTree"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible"
 import {
