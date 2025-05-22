@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+/* eslint-disable @typescript-eslint/no-require-imports */
 
 /**
  * Copyright (c) HashiCorp, Inc.
@@ -7,20 +8,20 @@
 
 // edited to work with the appdir by @raphaelbadia
 
-import { gzipSizeSync } from "gzip-size"
-import mkdirp from "mkdirp"
-import fs from "fs"
-import path from "path"
+const gzSize = require("gzip-size")
+const mkdirp = require("mkdirp")
+const fs = require("fs")
+const path = require("path")
 
 // Pull options from `package.json`
-const options = await getOptions()
+const options = getOptions()
 const BUILD_OUTPUT_DIRECTORY = getBuildOutputDirectory(options)
 
 // first we check to make sure that the build output directory exists
 const nextMetaRoot = path.join(process.cwd(), BUILD_OUTPUT_DIRECTORY)
 try {
   fs.accessSync(nextMetaRoot, fs.constants.R_OK)
-} catch {
+} catch (err) {
   console.error(
     `No build output found at "${nextMetaRoot}" - you may not have your working directory set correctly, or not have run "next build".`
   )
@@ -28,12 +29,8 @@ try {
 }
 
 // if so, we can import the build manifest
-const buildMeta = await import(path.join(nextMetaRoot, "build-manifest.json"), { assert: { type: "json" } }).then(
-  (m) => m.default
-)
-const appDirMeta = await import(path.join(nextMetaRoot, "app-build-manifest.json"), { assert: { type: "json" } }).then(
-  (m) => m.default
-)
+const buildMeta = require(path.join(nextMetaRoot, "build-manifest.json"))
+const appDirMeta = require(path.join(nextMetaRoot, "app-build-manifest.json"))
 
 // this memory cache ensures we dont read any script file more than once
 // bundles are often shared between pages
@@ -42,10 +39,13 @@ const memoryCache = {}
 // since _app is the template that all other pages are rendered into,
 // every page must load its scripts. we'll measure its size here
 const globalBundle = buildMeta.pages["/_app"]
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+const globalBundleSizes = getScriptSizes(globalBundle)
 
 // next, we calculate the size of each page's scripts, after
 // subtracting out the global scripts
-const _allPageSizes = Object.values(buildMeta.pages).reduce((acc, scriptPaths, i) => {
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+const allPageSizes = Object.values(buildMeta.pages).reduce((acc, scriptPaths, i) => {
   const pagePath = Object.keys(buildMeta.pages)[i]
   const scriptSizes = getScriptSizes(scriptPaths.filter((scriptPath) => !globalBundle.includes(scriptPath)))
 
@@ -55,6 +55,7 @@ const _allPageSizes = Object.values(buildMeta.pages).reduce((acc, scriptPaths, i
 }, {})
 
 const globalAppDirBundle = buildMeta.rootMainFiles
+const globalAppDirBundleSizes = getScriptSizes(globalAppDirBundle)
 
 const allAppDirSizes = Object.values(appDirMeta.pages).reduce((acc, scriptPaths, i) => {
   const pagePath = Object.keys(appDirMeta.pages)[i]
@@ -108,7 +109,7 @@ function getScriptSize(scriptPath) {
   } else {
     const textContent = fs.readFileSync(p, encoding)
     rawSize = Buffer.byteLength(textContent, encoding)
-    gzipSize = gzipSizeSync(textContent)
+    gzipSize = gzSize.sync(textContent)
     memoryCache[p] = [rawSize, gzipSize]
   }
 
@@ -118,8 +119,9 @@ function getScriptSize(scriptPath) {
 /**
  * Reads options from `package.json`
  */
-async function getOptions(pathPrefix = process.cwd()) {
-  const pkg = await import(path.join(pathPrefix, "package.json"), { assert: { type: "json" } }).then((m) => m.default)
+function getOptions(pathPrefix = process.cwd()) {
+  const pkg = require(path.join(pathPrefix, "package.json"))
+
   return { ...pkg.nextBundleAnalysis, name: pkg.name }
 }
 

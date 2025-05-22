@@ -33,7 +33,7 @@ export async function getIsAdmin(userId: string) {
 /**
  * 콜백 URL 파싱 (없으면 기본값 반환)
  */
-export function getCallbackUrl(request: NextRequest, fallback = "/admin/dashboard/overview") {
+export function getCallbackUrl(request: NextRequest, fallback = "/admin/dashboard") {
   const requestUrl = new URL(request.url)
   return requestUrl.searchParams.get("callbackUrl") || fallback
 }

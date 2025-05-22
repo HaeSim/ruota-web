@@ -1,6 +1,8 @@
 "use client"
 import { IconSlash } from "@tabler/icons-react"
+
 import { Fragment } from "react"
+import { useMenuTree } from "@/app/(1.admin)/constants/_menu-config/useMenuTree"
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -9,30 +11,42 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb"
-import { useBreadcrumbs } from "@/hooks/use-breadcrumbs"
 
 export function Breadcrumbs() {
-  const items = useBreadcrumbs()
-  if (!items?.length) return null
+  const { currentMenuHierarchy, currentMenuNode } = useMenuTree()
+  if (!currentMenuHierarchy?.length && !currentMenuNode) return null
 
   return (
     <Breadcrumb>
       <BreadcrumbList>
-        {items.map((item, index) => (
-          <Fragment key={item.title}>
-            {index !== items.length - 1 && (
-              <BreadcrumbItem className="hidden md:block">
-                <BreadcrumbLink href={item.link}>{item.title}</BreadcrumbLink>
-              </BreadcrumbItem>
-            )}
-            {index < items.length - 1 && (
+        {currentMenuHierarchy.map((node, index) => (
+          <Fragment key={`${node.title}-${index}`}>
+            <BreadcrumbItem className="hidden md:block">
+              {index === currentMenuHierarchy.length - 1 && !currentMenuNode ? (
+                <BreadcrumbPage>{node.title}</BreadcrumbPage>
+              ) : (
+                <BreadcrumbLink href={node.getFullPath()}>{node.title}</BreadcrumbLink>
+              )}
+            </BreadcrumbItem>
+            {index < currentMenuHierarchy.length - 1 && (
               <BreadcrumbSeparator className="hidden md:block">
                 <IconSlash />
               </BreadcrumbSeparator>
             )}
-            {index === items.length - 1 && <BreadcrumbPage>{item.title}</BreadcrumbPage>}
           </Fragment>
         ))}
+        {currentMenuNode && (
+          <>
+            {currentMenuHierarchy.length > 0 && (
+              <BreadcrumbSeparator className="hidden md:block">
+                <IconSlash />
+              </BreadcrumbSeparator>
+            )}
+            <BreadcrumbItem className="hidden md:block">
+              <BreadcrumbPage>{currentMenuNode.title}</BreadcrumbPage>
+            </BreadcrumbItem>
+          </>
+        )}
       </BreadcrumbList>
     </Breadcrumb>
   )

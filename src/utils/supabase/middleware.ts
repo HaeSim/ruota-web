@@ -55,7 +55,7 @@ export async function updateSession(request: NextRequest) {
   // OAuth 인증 코드가 있고 루트 경로('/')에 있는 경우 대시보드로 리디렉션
   if (code && pathname === "/") {
     const redirectUrl = request.nextUrl.clone()
-    redirectUrl.pathname = "/admin/dashboard/overview"
+    redirectUrl.pathname = "/admin/dashboard"
     return NextResponse.redirect(redirectUrl)
   }
 
@@ -81,7 +81,7 @@ export async function updateSession(request: NextRequest) {
 
     // 콜백 URL이 있으면 해당 URL로, 없으면 대시보드로
     const callbackUrl = request.nextUrl.searchParams.get("callbackUrl")
-    redirectUrl.pathname = callbackUrl || "/admin/dashboard/overview"
+    redirectUrl.pathname = callbackUrl || "/admin/dashboard"
 
     return NextResponse.redirect(redirectUrl)
   }

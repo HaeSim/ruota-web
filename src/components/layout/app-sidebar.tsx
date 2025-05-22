@@ -13,7 +13,7 @@ import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { useEffect, useState } from "react"
 import * as React from "react"
-import { navItems } from "@/app/(1.admin)/constants/data"
+import { useMenuTree } from "@/app/(1.admin)/constants/_menu-config/useMenuTree"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible"
 import {
@@ -43,7 +43,6 @@ import {
 import { useMediaQuery } from "@/hooks/use-media-query"
 import { signOut } from "@/utils/supabase/auth-helpers.client"
 import { createSupabaseBrowser } from "@/utils/supabase/supabase-browser"
-import { Icons } from "../icons"
 
 export const company = {
   name: "루오타 커피",
@@ -55,6 +54,7 @@ export default function AppSidebar() {
   const pathname = usePathname()
   const { isOpen } = useMediaQuery()
   const [user, setUser] = useState<User | null>(null)
+  const { menuRoot } = useMenuTree()
 
   useEffect(() => {
     createSupabaseBrowser()
@@ -68,27 +68,29 @@ export default function AppSidebar() {
     // 사이드바 상태 변경에 기반한 부수 효과
   }, [isOpen])
 
+  // 첫 번째 메뉴의 경로 (있으면)
+  const firstMenuPath = menuRoot.children[0]?.getFullPath() || "/"
+
   return (
     <Sidebar collapsible="icon">
       <SidebarHeader>
         <SidebarMenu>
           <SidebarMenuItem>
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <SidebarMenuButton
-                  size="lg"
-                  className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground"
-                >
-                  <div className="bg-primary text-sidebar-primary-foreground flex aspect-square size-8 items-center justify-center rounded-lg">
-                    <IconCoffee className="size-4" />
-                  </div>
-                  <div className="flex flex-col gap-0.5 leading-none">
-                    <span className="font-semibold">루오타</span>
-                    <span className="text-muted-foreground text-xs">커피트럭</span>
-                  </div>
-                </SidebarMenuButton>
-              </DropdownMenuTrigger>
-            </DropdownMenu>
+            {/* sidebar 축소 시, 아이콘 클릭하면 첫번째 메뉴로 이동 */}
+            <Link href={isOpen ? "#" : firstMenuPath} tabIndex={isOpen ? -1 : 0} aria-label="메인으로 이동">
+              <SidebarMenuButton
+                size="lg"
+                className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground"
+              >
+                <div className="bg-primary text-sidebar-primary-foreground flex aspect-square size-8 items-center justify-center rounded-lg">
+                  <IconCoffee className="size-4" />
+                </div>
+                <div className="flex flex-col gap-0.5 leading-none">
+                  <span className="font-semibold">루오타</span>
+                  <span className="text-muted-foreground text-xs">커피트럭</span>
+                </div>
+              </SidebarMenuButton>
+            </Link>
           </SidebarMenuItem>
         </SidebarMenu>
       </SidebarHeader>
@@ -96,25 +98,26 @@ export default function AppSidebar() {
         <SidebarGroup>
           <SidebarGroupLabel>루오타 관리</SidebarGroupLabel>
           <SidebarMenu>
-            {navItems.map((item) => {
-              const Icon = item.icon ? Icons[item.icon] : Icons.logo
-              return item?.items && item?.items?.length > 0 ? (
-                <Collapsible key={item.title} asChild defaultOpen={item.isActive} className="group/collapsible">
+            {menuRoot.children.map((node) => {
+              const isActive = pathname.startsWith(node.getFullPath())
+              const Icon = node.icon
+              return node.children.length > 0 ? (
+                <Collapsible key={node.title} asChild defaultOpen={isActive} className="group/collapsible">
                   <SidebarMenuItem>
                     <CollapsibleTrigger asChild>
-                      <SidebarMenuButton tooltip={item.title} isActive={pathname === item.url}>
-                        {item.icon && <Icon />}
-                        <span>{item.title}</span>
+                      <SidebarMenuButton tooltip={node.title} isActive={isActive}>
+                        {Icon && <Icon />}
+                        <span>{node.title}</span>
                         <IconChevronRight className="ml-auto transition-transform duration-200 group-data-[state=open]/collapsible:rotate-90" />
                       </SidebarMenuButton>
                     </CollapsibleTrigger>
                     <CollapsibleContent>
                       <SidebarMenuSub>
-                        {item.items?.map((subItem) => (
-                          <SidebarMenuSubItem key={subItem.title}>
-                            <SidebarMenuSubButton asChild isActive={pathname === subItem.url}>
-                              <Link href={subItem.url}>
-                                <span>{subItem.title}</span>
+                        {node.children.map((subNode) => (
+                          <SidebarMenuSubItem key={subNode.title}>
+                            <SidebarMenuSubButton asChild isActive={pathname === subNode.getFullPath()}>
+                              <Link href={subNode.getFullPath()}>
+                                <span>{subNode.title}</span>
                               </Link>
                             </SidebarMenuSubButton>
                           </SidebarMenuSubItem>
@@ -124,11 +127,11 @@ export default function AppSidebar() {
                   </SidebarMenuItem>
                 </Collapsible>
               ) : (
-                <SidebarMenuItem key={item.title}>
-                  <SidebarMenuButton asChild tooltip={item.title} isActive={pathname === item.url}>
-                    <Link href={item.url}>
-                      <Icon />
-                      <span>{item.title}</span>
+                <SidebarMenuItem key={node.title}>
+                  <SidebarMenuButton asChild tooltip={node.title} isActive={pathname === node.getFullPath()}>
+                    <Link href={node.getFullPath()}>
+                      {Icon && <Icon />}
+                      <span>{node.title}</span>
                     </Link>
                   </SidebarMenuButton>
                 </SidebarMenuItem>

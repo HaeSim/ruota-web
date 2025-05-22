@@ -1,51 +1,46 @@
 "use client"
 import { KBarAnimator, KBarPortal, KBarPositioner, KBarProvider, KBarSearch } from "kbar"
+import type { Action } from "kbar"
 import { useRouter } from "next/navigation"
 import { useMemo } from "react"
-import { navItems } from "@/app/(1.admin)/constants/data"
+import { MENU_STRUCTURE } from "@/app/(1.admin)/constants/_menu-config/menuStructure"
+import type { Menu } from "@/app/(1.admin)/constants/_menu-config/types"
 import RenderResults from "./render-result"
 import useThemeSwitching from "./use-theme-switching"
+
+// Menu(MenuList 포함)를 kbar 액션 배열로 변환하는 유틸 함수
+function menuToKbarActions(
+  menuList: Menu[],
+  parentTitle: string | null = null,
+  router?: ReturnType<typeof useRouter>
+): Action[] {
+  return menuList.flatMap((menu) => {
+    const actions: Action[] = []
+    // link가 있는 경우만 액션으로 추가
+    if (menu.link && router) {
+      actions.push({
+        id: `${menu.title.toLowerCase().replace(/\s+/g, "-")}-action`,
+        name: menu.title,
+        keywords: menu.title.toLowerCase(),
+        section: parentTitle || "Navigation",
+        subtitle: menu.link,
+        perform: () => router.push(menu.link!),
+      })
+    }
+    // 하위 메뉴(menuList)가 있으면 재귀적으로 변환
+    if (menu.menuList && menu.menuList.length > 0) {
+      actions.push(...menuToKbarActions(menu.menuList, menu.title, router))
+    }
+    return actions
+  })
+}
 
 export default function KBar({ children }: { children: React.ReactNode }) {
   const router = useRouter()
 
-  // These action are for the navigation
+  // 신규 메뉴 구조 기반 액션 생성
   const actions = useMemo(() => {
-    // Define navigateTo inside the useMemo callback to avoid dependency array issues
-    const navigateTo = (url: string) => {
-      router.push(url)
-    }
-
-    return navItems.flatMap((navItem) => {
-      // Only include base action if the navItem has a real URL and is not just a container
-      const baseAction =
-        navItem.url !== "#"
-          ? {
-              id: `${navItem.title.toLowerCase()}Action`,
-              name: navItem.title,
-              shortcut: navItem.shortcut,
-              keywords: navItem.title.toLowerCase(),
-              section: "Navigation",
-              subtitle: `Go to ${navItem.title}`,
-              perform: () => navigateTo(navItem.url),
-            }
-          : null
-
-      // Map child items into actions
-      const childActions =
-        navItem.items?.map((childItem) => ({
-          id: `${childItem.title.toLowerCase()}Action`,
-          name: childItem.title,
-          shortcut: childItem.shortcut,
-          keywords: childItem.title.toLowerCase(),
-          section: navItem.title,
-          subtitle: `Go to ${childItem.title}`,
-          perform: () => navigateTo(childItem.url),
-        })) ?? []
-
-      // Return only valid actions (ignoring null base actions for containers)
-      return baseAction ? [baseAction, ...childActions] : childActions
-    })
+    return menuToKbarActions(MENU_STRUCTURE, null, router)
   }, [router])
 
   return (
