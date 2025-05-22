@@ -79,7 +79,7 @@ export function findMenuNode(node: MenuNode, pathname: string): MenuNode | null 
           // 부모 노드들에게 관련된 파라미터 전파
           let currentNode = node.parent
           while (currentNode && !currentNode.isRoot()) {
-            const relevantParams = new Map()
+            const relevantParams = new Map<string, string>()
             params.forEach((value, key) => {
               if (currentNode?.link?.includes(`[${key}]`)) {
                 relevantParams.set(key, value)

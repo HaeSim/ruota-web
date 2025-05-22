@@ -114,7 +114,7 @@ export class MenuNode implements IMenuNode {
     while (currentNode && !currentNode.isRoot()) {
       // 현재 노드의 params를 부모 노드들과 공유
       if (this.params?.size) {
-        const relevantParams = new Map()
+        const relevantParams = new Map<string, string>()
         // 부모 노드의 링크에 포함된 파라미터만 전달
         this.params.forEach((value, key) => {
           if (currentNode?.link?.includes(`[${key}]`)) {
