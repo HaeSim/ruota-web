@@ -18,7 +18,15 @@ export default async function Page() {
     data: { user },
   } = await supabase.auth.getUser()
   if (user) {
-    redirect("/admin/dashboard/overview")
+    // is_admin 여부 확인
+    const { data: userRow } = await supabase.from("users").select("is_admin").eq("id", user.id).single()
+
+    if (userRow?.is_admin) {
+      redirect("/admin/dashboard/overview")
+    }
+    // 관리자가 아니면 로그인 페이지 노출 (혹은 안내 메시지)
+    // 필요시, 쿼리 파라미터로 에러 메시지 전달
+    // return redirect(`/admin/signin?error=not_admin`)
   }
   return <SignInViewPage />
 }

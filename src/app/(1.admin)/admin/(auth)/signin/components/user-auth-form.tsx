@@ -70,14 +70,14 @@ export default function UserAuthForm() {
             name="email"
             render={({ field }) => (
               <FormItem>
-                <FormLabel className="text-stone-700">이메일</FormLabel>
+                <FormLabel className="text-stone-700 dark:text-stone-100">이메일</FormLabel>
                 <FormControl>
                   <Input
                     type="email"
                     placeholder="이메일 주소를 입력하세요"
                     disabled={loading}
                     {...field}
-                    className="border-stone-300 focus:border-stone-500"
+                    className="border-stone-300 focus:border-stone-500 dark:border-stone-700 dark:bg-stone-900 dark:text-stone-100 dark:placeholder:text-stone-400 dark:focus:border-stone-400"
                   />
                 </FormControl>
                 <FormMessage />
@@ -88,7 +88,7 @@ export default function UserAuthForm() {
           <Button
             disabled={loading}
             className={cn(
-              "mt-2 ml-auto w-full bg-stone-800 hover:bg-stone-700",
+              "mt-2 ml-auto w-full bg-stone-800 text-stone-50 hover:bg-stone-700 dark:bg-stone-100 dark:text-stone-900 dark:hover:bg-stone-200",
               "cursor-pointer",
               loading && "cursor-not-allowed opacity-70"
             )}
@@ -105,12 +105,12 @@ export default function UserAuthForm() {
           </Button>
         </form>
       </Form>
-      <div className="relative">
+      <div className="relative dark:bg-stone-900">
         <div className="absolute inset-0 flex items-center">
-          <span className="w-full border-t border-stone-300" />
+          <span className="w-full border-t border-stone-300 dark:border-stone-700" />
         </div>
         <div className="relative flex justify-center text-xs uppercase">
-          <span className="bg-stone-50 px-2 text-stone-500">또는</span>
+          <span className="bg-stone-50 px-2 text-stone-500 dark:bg-stone-900 dark:text-stone-400">또는</span>
         </div>
       </div>
       <div className="space-y-2">
