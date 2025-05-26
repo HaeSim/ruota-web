@@ -7,14 +7,14 @@
 ```typescript
 ;/menu/abeeegrv / // 음료 목록
   menu /
-  beverage /
+  drink /
   create / // 음료 등록
   menu /
-  beverage /
-  [beverageIdx] / // 음료 상세
+  drink /
+  [drinkIdx] / // 음료 상세
   menu /
-  beverage /
-  [beverageIdx] /
+  drink /
+  [drinkIdx] /
   edit // 음료 수정
 ```
 
@@ -39,7 +39,7 @@
 
 ## 2. 동적 파라미터 네이밍 규칙
 
-- `Idx`: 내부 시스템 식별자 (예: `beverageIdx`, `bannerIdx`)
+- `Idx`: 내부 시스템 식별자 (예: `drinkIdx`, `bannerIdx`)
 - `Sequence`: 순차 번호가 의미 있는 경우 (예: `orderSequence`)
 - `Id`: 외부 시스템 연동 식별자 (예: `userId`, `nftId`)
 
@@ -61,7 +61,7 @@
   menuList: [
     {
       title: '음료',
-      link: '/menu/beverage',
+      link: '/menu/drink',
     },
     {
       title: '디저트',
@@ -92,7 +92,7 @@
 // ❌ 모호한 파라미터명
 {
   title: '상세정보',
-  link: '/menu/beverage/[pid]'  // [beverageIdx]로 수정 필요
+  link: '/menu/drink/[pid]'  // [drinkIdx]로 수정 필요
 }
 
 // ❌ catch-all 라우트 사용
@@ -106,10 +106,10 @@
 
 ## 4. 기능별 URL 패턴
 
-- **목록**: `/menu/beverage`
-- **생성**: `/menu/beverage/create`
-- **상세**: `/menu/beverage/[beverageIdx]`
-- **수정**: `/menu/beverage/[beverageIdx]/edit`
+- **목록**: `/menu/drink`
+- **생성**: `/menu/drink/create`
+- **상세**: `/menu/drink/[drinkIdx]`
+- **수정**: `/menu/drink/[drinkIdx]/edit`
 
 ---
 

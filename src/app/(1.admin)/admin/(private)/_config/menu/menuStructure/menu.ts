@@ -7,7 +7,7 @@ export const menuManageMenu: Menu = {
   menuList: [
     {
       title: "음료",
-      link: "/admin/menu/beverage",
+      link: "/admin/menu/drink",
     },
     {
       title: "디저트",

@@ -9,6 +9,7 @@ import { Toaster } from "sonner"
 import { env } from "@/env.mjs"
 import { fontVariables } from "@/lib/font"
 import { cn } from "@/lib/utils"
+import { TRPCReactProvider } from "./(0.api)/_trpc/react"
 import { SmoothScroll } from "./(2.homepage)/_components/common/smooth-scroll"
 import Providers from "./_components/providers"
 
@@ -80,15 +81,17 @@ export default async function RootLayout({ children }: { children: React.ReactNo
           pretendard.className
         )}
       >
-        <NextTopLoader showSpinner={false} color="#f9e9c1" />
-        <NuqsAdapter>
-          <Providers activeThemeValue={activeThemeValue as string}>
-            <div vaul-drawer-wrapper="" className="bg-background">
-              <Toaster />
-              <SmoothScroll>{children}</SmoothScroll>
-            </div>
-          </Providers>
-        </NuqsAdapter>
+        <TRPCReactProvider>
+          <NextTopLoader showSpinner={false} color="#f9e9c1" />
+          <NuqsAdapter>
+            <Providers activeThemeValue={activeThemeValue as string}>
+              <div vaul-drawer-wrapper="" className="bg-background">
+                <Toaster />
+                <SmoothScroll>{children}</SmoothScroll>
+              </div>
+            </Providers>
+          </NuqsAdapter>
+        </TRPCReactProvider>
       </body>
     </html>
   )

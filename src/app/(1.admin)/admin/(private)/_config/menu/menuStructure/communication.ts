@@ -8,6 +8,26 @@ export const communicationMenu: Menu = {
     {
       title: "배너",
       link: "/admin/communication/banner",
+      menuList: [
+        {
+          title: "배너 등록",
+          link: "/admin/communication/banner/new",
+        },
+        {
+          title: "배너 순서관리",
+          link: "/admin/communication/banner/order",
+        },
+        {
+          title: "배너 상세",
+          link: "/admin/communication/banner/[bannerIdx]",
+          menuList: [
+            {
+              title: "배너 수정",
+              link: "/admin/communication/banner/[bannerIdx]/edit",
+            },
+          ],
+        },
+      ],
     },
     {
       title: "팝업",
