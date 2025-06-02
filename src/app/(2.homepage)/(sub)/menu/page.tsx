@@ -12,7 +12,7 @@ export const metadata: Metadata = {
  */
 export default function MenuPage() {
   return (
-    <div className="h-[calc(100dvh-68px)] overflow-hidden md:h-[calc(100dvh-68px=140px)]">
+    <div className="h-[calc(100dvh-68px-64px)] overflow-hidden md:h-[calc(100dvh-68px=140px)]">
       {/* 음료 메뉴 섹션 */}
       <Link href="/menu/drinks" className="group relative block h-1/2 md:float-left md:h-full md:w-1/2">
         <div className="absolute inset-0 bg-[url('/images/menu/drinks-bg.webp')] bg-cover bg-center transition-all duration-300 group-hover:brightness-50" />
